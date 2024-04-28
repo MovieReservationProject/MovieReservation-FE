@@ -1,0 +1,155 @@
+.cgv-footer {
+  background-color: #f8f8f8;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  color: #666;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 10px 0;
+  width: 980px;
+}
+
+.footer-links a,
+.footer-links-inner a {
+  color: #666;
+  text-decoration: none;
+}
+
+.footer-links-inner a.privacy-policy {
+  color: #222;
+  text-decoration: underline;
+}
+
+.footer-links-inner {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.footer-links-inner a:hover {
+  text-decoration: underline;
+}
+
+.footer-links-inner ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-links-inner ul li {
+  margin-right: 20px;
+}
+
+.footer-links-inner ul li:first-child {
+  margin-left: 0;
+}
+
+.footer-links-inner ul li:last-child {
+  margin-right: 0;
+}
+
+.cgv-footer .company_address,
+.cgv-footer .company_details {
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.cgv-footer .company_details {
+  color: #666;
+  font-size: 12px;
+}
+
+a.btn_goFtc {
+  text-decoration: underline;
+  color: #666;
+  margin-left: 5px;
+}
+
+/* 저작권 정보 스타일링 */
+.cgv-footer .copyright {
+  font-size: 12px;
+  color: #666;
+  text-align: left;
+}
+
+.company_info_wrap {
+  flex: 1;
+  text-align: left;
+}
+
+.footer-links-inner,
+div > section {
+  flex: 1;
+  padding-top: 10px;
+}
+
+.company_info_wrap,
+#familysite {
+  margin-top: 10px;
+}
+
+.btn_familysite {
+  display: inline-block;
+  margin-left: 10px;
+  background-color: #9e9e9e;
+  color: #fff;
+  text-decoration: none;
+  padding: 6px 8px;
+}
+
+.footer-links-inner-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+#familysite {
+  padding: 8px;
+  width: 190px;
+  height: 35.5px;
+  vertical-align: bottom;
+  margin-top: 85px;
+  margin-left: 11.8rem;
+  background-color: transparent;
+  font-size: 12px;
+  border: 1px solid #ccc;
+}
+
+#familysite:focus-visible {
+  border: 3px solid #ead3d7;
+  outline: none;
+}
+
+.familysiteTitle {
+  display: none;
+}
+
+/* 선택적: 반응형 디자인을 위한 코드 */
+@media (max-width: 768px) {
+  .footer-links-inner-wrap {
+    flex-direction: column;
+  }
+
+  .company_info_wrap,
+  .familysite {
+    padding: 15px 0;
+    width: 100%;
+  }
+}
