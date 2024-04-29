@@ -125,7 +125,7 @@ const Cinema = () => {
     return (
         <div>
             {selectmovie && cinemalist?.map((cinema)=>(
-                <div style={{backgroundColor : cinema === selectcinema ? '#D3D3D3' : 'transparent', cursor: 'pointer' }}onClick={()=>selectcinemahandler(cinema)}>
+                <div style={{backgroundColor : cinema === selectcinema ? '#D3D3D3' : 'transparent', cursor: 'pointer' , textAlign:'center'  }}onClick={()=>selectcinemahandler(cinema)}>
                     {cinema} 
                 </div>
             ))}

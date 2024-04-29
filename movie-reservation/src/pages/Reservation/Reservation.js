@@ -10,6 +10,8 @@ import dayjs from 'dayjs'
 import {useNavigate} from 'react-router-dom'
 import Myreserve from './Myreserve';
 import "./Reservation.css";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
 const Reservation = () => {
 
@@ -145,9 +147,10 @@ const Reservation = () => {
 
     return (
         <>
+        <Header></Header>
         <div class="wrap max-w-5xl mx-auto mt-6 mb-6 my-0 flex border-solid border-2 border-black-600 ">
             <div class="flex-none w-32 border-r-2">
-              <div class="font-semibold grow h-10 mb-1 mt-1 border-b-2 border-black-500">
+              <div class="text-center font-semibold grow h-10 mb-1 mt-1 border-b-2 border-black-500">
                 영화
               </div>
               <div>
@@ -155,7 +158,7 @@ const Reservation = () => {
            </div>
            </div>
              <div class="flex-none w-32 border-r-2">
-             <div class="font-semibold grow h-10 mb-1 mt-1 border-b-2 border-black-500">
+             <div class="text-center font-semibold grow h-10 mb-1 mt-1 border-b-2 border-black-500">
                 극장
               </div>
               <div>
@@ -163,7 +166,7 @@ const Reservation = () => {
              </div>
            </div>
            <div >
-           <div class=" font-semibold grow h-10 mb-1 mt-1  border-b-2 border-black-500">
+           <div class="text-center font-semibold grow h-10 mb-1 mt-1  border-b-2 border-black-500">
             {dayjs(selectdate).format("YYYYMMDD")}
             </div>
             <div class="mt-6 w-auto">
@@ -186,7 +189,7 @@ const Reservation = () => {
            </div>
       
         </div>
-                  
+        <Footer></Footer>        
                    </>
     );
 };
