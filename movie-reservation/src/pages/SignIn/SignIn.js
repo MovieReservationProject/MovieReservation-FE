@@ -1,0 +1,147 @@
+import React, { useState } from "react";
+import "./SignIn.css";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import Edit from "../../assets/png/edit.png";
+import Arrow from "../../assets/png/arrow.png";
+import Check from "../../assets/png/check.png";
+import View from "../../assets/png/view.png";
+import Hide from "../../assets/png/hide.png";
+import { useNavigate } from "react-router-dom";
+
+function SignIn() {
+  const [showPwd, setShowPwd] = useState(false);
+  const handleShowPwd = () => {
+    setShowPwd(!showPwd);
+  };
+  const [userName, setUserName] = useState("");
+  const [userId, setUserId] = useState("");
+  const [userPwd, setUserPwd] = useState("");
+  const [userDate, setUserDate] = useState("");
+  const [userNum, setUserNum] = useState("");
+
+  let navigate = useNavigate();
+
+  const handleSubmit = () => {
+    // 입력받은 정보를 백으로 보내는 함수(Post로)
+  };
+
+  return (
+    <>
+      <Header />
+      <h1 className="signin-title">회원가입</h1>
+      <div className="signin-icon">
+        <div>
+          <img src={Edit} className="eachicon" />
+          <p className="icon-txt-input">회원정보 입력</p>
+        </div>
+        <img src={Arrow} className="eachicon" />
+        <div>
+          <img src={Check} className="eachicon" />
+          <p className="icon-txt-complete">회원가입 완료</p>
+        </div>
+      </div>
+      <form onSubmit={handleSubmit} className="input-form">
+        <div className="user-info">
+          <span className="user-info-txt">이름</span>
+          <input
+            id="u_name"
+            type="text"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+            placeholder="이름을 입력해주세요"
+            className="user-info-input"
+            required
+          />
+        </div>
+        <div className="user-info">
+          <span className="user-info-txt">ID</span>
+          <input
+            id="u_id"
+            type="text"
+            value={userId}
+            onChange={(e) => setUserId(e.target.value)}
+            placeholder="사용할 ID를 입력해주세요"
+            className="user-info-input"
+            required
+          />
+          <button className="idcheck-btn">아이디 중복확인</button>
+        </div>
+        <div className="user-info">
+          <span className="user-info-txt">비밀번호</span>
+          <input
+            id="u_pwd"
+            type={showPwd ? "text" : "password"}
+            minLength="8"
+            maxLength="12"
+            value={userPwd}
+            onChange={(e) => setUserPwd(e.target.value)}
+            placeholder="8~12자리로 입력해주세요"
+            className="user-info-input"
+            required
+          />
+          <button className="pwd-btn" onClick={handleShowPwd}>
+            {showPwd ? (
+              <img src={Hide} className="pwd-icon" />
+            ) : (
+              <img src={View} className="pwd-icon" />
+            )}
+          </button>
+        </div>
+        <div className="user-info">
+          <span className="user-info-txt">생년월일</span>
+          <input
+            id="u_date"
+            type="date"
+            value={userDate}
+            onChange={(e) => setUserDate(e.target.value)}
+            className="user-info-input"
+            required
+          />
+        </div>
+        <div className="user-info">
+          <span className="user-info-txt">휴대폰번호</span>
+          <input
+            id="u_phone"
+            type="text"
+            value={userNum}
+            onChange={(e) => setUserNum(e.target.value)}
+            placeholder="-을 제외하고 입력해주세요"
+            className="user-info-input"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          className="signin-btn"
+          onClick={() => {
+            let totalInfo = "";
+            const u_name = document.getElementById("u_name").value;
+            const u_id = document.getElementById("u_id").value;
+            const u_pwd = document.getElementById("u_pwd").value;
+            const u_date = document.getElementById("u_date").value;
+            const u_phone = document.getElementById("u_phone").value;
+            totalInfo = u_name + u_id + u_pwd + u_date + u_phone;
+            if (totalInfo.trim() === "") {
+              alert("모든 입력값을 작성해주세요.");
+              return false;
+            }
+            alert("회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.");
+            navigate("/login");
+          }}
+        >
+          회원가입
+        </button>
+        <div className="signin-footer">
+          <span className="footer-txt">이미 회원이신가요?</span>
+          <button className="login-btn" onClick={() => navigate("/login")}>
+            로그인
+          </button>
+        </div>
+      </form>
+      <Footer />
+    </>
+  );
+}
+
+export default SignIn;

@@ -2,15 +2,19 @@ import React from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import { Routes, Route, Link } from "react-router-dom";
+import Main from "./pages/Main/Main";
+import Login from "./pages/Login/Login";
+import SignIn from "./pages/SignIn/SignIn";
+
 function App() {
   return (
     <div className="App">
-      <Header />
-      <div>
-        <br></br>
-        <br></br>
-      </div>
-      <Footer />
+      <Routes>
+        <Route path="/main" element={<Main />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signin" element={<SignIn />} />
+      </Routes>
     </div>
   );
 }
