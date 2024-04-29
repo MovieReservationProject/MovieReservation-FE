@@ -32,7 +32,7 @@ const Movie = () => {
         <div>
                {movies.map((movie,index)=>(
                 <div key={index} onClick={()=>selectmoviehandler(movie)}
-                style={{backgroundColor : movie === selectmovie ? '#D3D3D3' : 'transparent', cursor: 'pointer' }} 
+                style={{backgroundColor : movie === selectmovie ? '#D3D3D3' : 'transparent', cursor: 'pointer' , textAlign:'center' }} 
                 // class="border-solid border-2 border-indigo-600 ml-2 "
                 >
                     {movie}
