@@ -24,7 +24,9 @@ function Movie({
         <span className="movie-date">{releaseDate}</span>
         <span className="movie-dday">D-{dDay}</span>
       </div>
-      <button className="movie-btn">예매하기</button>
+      <button className="movie-btn">
+        <a href="/reservation">예매하기</a>
+      </button>
     </div>
   );
 }
