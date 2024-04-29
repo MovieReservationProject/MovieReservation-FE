@@ -5,6 +5,8 @@
   margin: auto;
   margin-top: 50px;
   margin-bottom: 50px;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .signin-icon {
@@ -18,7 +20,7 @@
 .eachicon {
   width: 50px;
   height: 50px;
-  padding: 0 20px 0 15px;
+  margin: 15px;
 }
 
 .icon-txt-input {
@@ -51,9 +53,11 @@
 
 .user-info-input {
   width: 300px;
-  height: 30px;
+  height: 40px;
   font-size: 15px;
   padding-left: 10px;
+  border: 1px solid gray;
+  border-radius: 6px;
 }
 
 .idcheck-btn {
@@ -62,6 +66,8 @@
   height: 30px;
   background-color: white;
   border: 2px solid black;
+  border-radius: 6px;
+  font-size: 12px;
   font-weight: bold;
   cursor: pointer;
 }
@@ -90,10 +96,12 @@
   align-items: center;
   margin: auto;
   margin-top: 50px;
+  padding: 10px 0 12px 0;
   width: 150px;
-  height: 40px;
+  height: 45px;
   background-color: #fb4357;
   color: white;
+  font-size: 14px;
   font-weight: bold;
   border: 4px double;
   border-radius: 3px;
@@ -115,9 +123,11 @@
 .login-btn {
   margin-left: 30px;
   width: 90px;
-  height: 25px;
+  height: 30px;
   background-color: white;
   border: 2px solid #fb4357;
+  border-radius: 6px;
+  font-size: 12px;
   font-weight: bold;
   color: #fb4357;
   cursor: pointer;

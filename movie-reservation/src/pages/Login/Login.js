@@ -75,7 +75,7 @@ function Login() {
       </form>
 
       <div className="login-bottom">
-        <h4>회원이 아니신가요?</h4>
+        <h4 className="bottom-txt">회원이 아니신가요?</h4>
         <button
           className="login-signin-btn"
           onClick={() => navigate("/signin")}

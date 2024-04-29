@@ -15,11 +15,11 @@ function UserActions({ isLoggedIn, toggleLogin }) {
         </a>
       ) : (
         <>
-          <a href="auth/login">
+          <a href="/login">
             <img src={LoginMember} alt="로그인" />
             로그인
           </a>
-          <a href="auth/sign-up">
+          <a href="/signin">
             <img src={LoginJoin} alt="회원가입" />
             회원가입
           </a>

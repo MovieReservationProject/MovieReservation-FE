@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Main.css";
+import "./Mainpage.css";
 import { Dropdown, Spinner } from "react-bootstrap";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "../../components/Header/Header";

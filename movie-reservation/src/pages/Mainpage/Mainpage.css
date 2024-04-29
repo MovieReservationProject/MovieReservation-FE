@@ -1,4 +1,5 @@
 .main-title {
+  font-size: 35px;
   font-weight: bold;
   margin: 50px 0 50px 15%;
 }
@@ -7,7 +8,7 @@
   border: none;
   border: 0.5px solid #212529;
   margin-top: -30px;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 }
 
 .main-dropdown {
@@ -19,7 +20,7 @@
   right: 10%;
   font-size: 12px;
   font-weight: bold;
-  padding-left: 10px;
+  padding-left: 9px;
 }
 
 .main-loading {
@@ -36,7 +37,7 @@
   justify-content: center;
   align-items: center;
   margin: auto;
-  margin-top: 120px;
+  margin-top: 100px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 500px 500px 500px;
