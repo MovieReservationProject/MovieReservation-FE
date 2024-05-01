@@ -1,0 +1,154 @@
+.login-top-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 50px 0 50px 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.login-form {
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.login-form-id {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.login-form-pwd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.login-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.login-form-input {
+  width: 200px;
+  height: 40px;
+  font-size: 15px;
+  padding-left: 10px;
+  margin-left: 5px;
+  border: 1px solid gray;
+  border-radius: 6px;
+}
+
+.login-pwd-icon {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  right: 330%;
+}
+
+.login-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 50px;
+  width: 150px;
+  height: 40px;
+  background-color: #fb4357;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: 4px double;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.login-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 50px 0 50px 0;
+}
+
+.bottom-txt {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.login-signin-btn {
+  margin-left: 30px;
+  width: 90px;
+  height: 30px;
+  background-color: white;
+  border: 2px solid #fb4357;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fb4357;
+  cursor: pointer;
+}
+
+.login-membership-btn {
+  margin-left: 10px;
+  width: 90px;
+  height: 30px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-container {
+  width: 500px;
+  height: 400px;
+  z-index: 999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: whitesmoke;
+  border: 4px double lightgray;
+  border-radius: 5px;
+}
+
+.modal-content {
+  width: 400px;
+  height: 80px;
+  margin: 5px;
+  background-color: whitesmoke;
+  border: none;
+}
+
+.modal-title {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.modal-highlight {
+  font-size: 18px;
+  color: #ed27cf;
+}
+
+.modal-txt {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.modal-btn {
+  margin-top: 5px;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 6px;
+  font-size: 12px;
+  padding: 5px;
+  cursor: pointer;
+  position: absolute;
+  left: 45%;
+}

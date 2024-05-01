@@ -1,0 +1,62 @@
+.movie-wrapper {
+  padding-left: 50px;
+}
+
+.movie-img {
+  width: 210px;
+  height: 300px;
+  margin-bottom: 10px;
+}
+
+.movie-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.movie-sales-txt {
+  font-size: 13px;
+}
+
+.movie-sales {
+  margin-left: 5px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.movie-score-txt {
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.movie-score {
+  margin-left: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.movie-date {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.movie-dday {
+  margin-left: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  color: red;
+}
+
+.movie-btn {
+  margin-top: 20px;
+  padding: 3px;
+  background-color: #ff4256;
+  border-color: #ff4256;
+  color: white;
+  outline: none;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+}
