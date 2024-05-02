@@ -3,14 +3,22 @@
 }
 
 .movie-img {
-  width: 210px;
-  height: 300px;
-  margin-bottom: 10px;
+  width: 310px;
+  height: 400px;
+}
+
+.movie-img-hover {
+  width: 310px;
+  height: 400px;
+  background-color: grey;
+  opacity: 0.5;
+  cursor: pointer;
 }
 
 .movie-title {
   font-size: 20px;
   font-weight: bold;
+  margin-top: 15px;
 }
 
 .movie-sales-txt {
