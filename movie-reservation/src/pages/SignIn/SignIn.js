@@ -10,20 +10,62 @@ import Hide from "../../assets/png/hide.png";
 import { useNavigate } from "react-router-dom";
 
 function SignIn() {
+  const [userName, setUserName] = useState("");
+  const [userId, setUserId] = useState("");
+  const [userPwd, setUserPwd] = useState("");
+  const date = new Date();
+  const [userDate, setUserDate] = useState(date);
+  const [userNum, setUserNum] = useState("");
+
   const [showPwd, setShowPwd] = useState(false);
   const handleShowPwd = () => {
     setShowPwd(!showPwd);
   };
-  const [userName, setUserName] = useState("");
-  const [userId, setUserId] = useState("");
-  const [userPwd, setUserPwd] = useState("");
-  const [userDate, setUserDate] = useState("");
-  const [userNum, setUserNum] = useState("");
 
   let navigate = useNavigate();
 
-  const handleSubmit = () => {
-    // 입력받은 정보를 백으로 보내는 함수(Post로)
+  const handleSignIn = async (event) => {
+    event.preventDefault();
+    const payload = {
+      name: userName,
+      myId: userId,
+      password: userPwd,
+      birthday: userDate,
+      phoneNumber: userNum,
+    };
+
+    try {
+      const response = await fetch("http://3.37.251.140:8080/auth/sign-up", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        const contentType = response.headers.get("Content-Type");
+        if (contentType && contentType.includes("application/json")) {
+          const data = await response.json();
+
+          if (response.status === 200) {
+            alert(
+              userId +
+                "님, 회원가입이 완료되었습니다. 로그인 페이지로 이동합니다."
+            );
+            navigate("/login");
+          } else if (response.status === 400) {
+            alert("회원가입에 실패했습니다.");
+          }
+        } else {
+          throw new Error("서버에서 JSON 형식의 응답을 반환하지 않았습니다.");
+        }
+      } else {
+        throw new Error("서버 요청 실패: " + response.status);
+      }
+    } catch (error) {
+      console.error("오류가 발생했습니다. 오류명: ", error);
+    }
   };
 
   return (
@@ -41,7 +83,7 @@ function SignIn() {
           <p className="icon-txt-complete">회원가입 완료</p>
         </div>
       </div>
-      <form onSubmit={handleSubmit} className="input-form">
+      <form onSubmit={handleSignIn} className="input-form">
         <div className="user-info">
           <span className="user-info-txt">이름</span>
           <input
@@ -111,25 +153,7 @@ function SignIn() {
             required
           />
         </div>
-        <button
-          type="submit"
-          className="signin-btn"
-          onClick={() => {
-            let totalInfo = "";
-            const u_name = document.getElementById("u_name").value;
-            const u_id = document.getElementById("u_id").value;
-            const u_pwd = document.getElementById("u_pwd").value;
-            const u_date = document.getElementById("u_date").value;
-            const u_phone = document.getElementById("u_phone").value;
-            totalInfo = u_name + u_id + u_pwd + u_date + u_phone;
-            if (totalInfo.trim() === "") {
-              alert("모든 입력값을 작성해주세요.");
-              return false;
-            }
-            alert("회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.");
-            navigate("/login");
-          }}
-        >
+        <button type="submit" className="signin-btn" onClick={handleSignIn}>
           회원가입
         </button>
         <div className="signin-footer">

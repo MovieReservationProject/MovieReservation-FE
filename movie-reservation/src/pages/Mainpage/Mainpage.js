@@ -12,7 +12,7 @@ function Main() {
   const [movies, setMovies] = useState([
     {
       posterImg: { Test },
-      title: "제목",
+      movie_name: "범죄도시4",
       ticketSales: 92,
       score: 9,
       releaseDate: "2024년 4월 20일",
@@ -20,7 +20,7 @@ function Main() {
     },
     {
       posterImg: { Test },
-      title: "제목",
+      movie_name: "파묘",
       ticketSales: 92,
       score: 9,
       releaseDate: "2024년 4월 20일",
@@ -28,7 +28,7 @@ function Main() {
     },
     {
       posterImg: { Test },
-      title: "제목",
+      movie_name: "제목",
       ticketSales: 92,
       score: 9,
       releaseDate: "2024년 4월 20일",
@@ -36,7 +36,7 @@ function Main() {
     },
     {
       posterImg: { Test },
-      title: "제목",
+      movie_name: "제목",
       ticketSales: 92,
       score: 9,
       releaseDate: "2024년 4월 20일",
@@ -44,7 +44,7 @@ function Main() {
     },
     {
       posterImg: { Test },
-      title: "제목",
+      movie_name: "제목",
       ticketSales: 92,
       score: 9,
       releaseDate: "2024년 4월 20일",
@@ -88,7 +88,7 @@ function Main() {
               <Movie
                 key={index}
                 posterImg={movie.posterImg}
-                title={movie.title}
+                movie_name={movie.movie_name}
                 ticketSales={movie.ticketSales}
                 score={movie.score}
                 releaseDate={movie.releaseDate}

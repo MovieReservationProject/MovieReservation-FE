@@ -16,7 +16,9 @@ function Login() {
   };
 
   const [userId, setUserId] = useState("");
-  const [userPwd, setUserPwd] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginCheck, setLoginCheck] = useState(false);
+
   const [showPwd, setShowPwd] = useState(false);
   const handleShowPwd = () => {
     setShowPwd(!showPwd);
@@ -24,12 +26,35 @@ function Login() {
 
   let navigate = useNavigate();
 
-  const handleSubmit = () => {
-    // 입력받은 정보를 백으로 보내는 함수
-  };
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    await new Promise((r) => setTimeout(r, 1000));
 
-  const handleLogin = () => {
-    // 로그인 정보가 맞으면 alert 띄우고 메인으로 이동
+    const response = await fetch("http://3.37.251.140:8080/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        myId: userId,
+        password: password,
+      }),
+    });
+    const result = await response.json();
+
+    if (response.status === 200) {
+      setLoginCheck(false);
+      sessionStorage.setItem("token", result.token);
+      sessionStorage.setItem("myId", result.myId);
+      sessionStorage.setItem("role", result.role);
+      sessionStorage.setItem("storeId", result.storeId);
+      console.log("로그인성공, 아이디: " + userId);
+      alert("로그인이 완료되었습니다. 홈으로 이동합니다.");
+      navigate("/movie");
+    } else {
+      alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
+      setLoginCheck(true);
+    }
   };
 
   return (
@@ -38,8 +63,7 @@ function Login() {
       <h3 className="login-top-text">
         아이디 비밀번호를 입력하신 후, 로그인 버튼을 클릭해 주세요.
       </h3>
-
-      <form onSubmit={handleSubmit} className="login-form">
+      <form onSubmit={handleLogin} className="login-form">
         <div className="login-form-id">
           <img src={User} className="login-icon" />
           <img src={Line} className="login-icon" />
@@ -56,8 +80,8 @@ function Login() {
           <img src={Line} className="login-icon" />
           <input
             type={showPwd ? "text" : "password"}
-            value={userPwd}
-            onChange={(e) => setUserPwd(e.target.value)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="password"
             className="login-form-input"
           />
