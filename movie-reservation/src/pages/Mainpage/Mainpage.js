@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Mainpage.css";
-import { Dropdown, Spinner } from "react-bootstrap";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Movie from "./Movie";
@@ -41,7 +39,6 @@ function Main() {
     if (page === 2) {
       changeFetch();
     } else if (page === 1) getMovies();
-    // else alert("마지막 페이지입니다."); 이건 구현이 안됨! 어떻게 해야하지
   };
 
   const handleDropdown = () => {
@@ -57,7 +54,6 @@ function Main() {
       <Header />
       <h1 className="main-title">무비차트</h1>
       <hr className="main-hr"></hr>
-      {/* <button onClick={(e) => test()}>확인</button> */}
       <select className="main-dropdown">
         <option>{dropDownOption}</option>
         <option>{dropDownOption === "예매율순" ? "평점순" : "예매율순"}</option>
@@ -67,17 +63,7 @@ function Main() {
       ) : (
         <div className="movie-chart">
           {movies.map((movie) => {
-            return (
-              <Movie
-                key={movie.movieId}
-                posterImg={movie.poster}
-                title={movie.titleKorean}
-                ticketSales={movie.ticketSales}
-                score={movie.scoreAvg}
-                releaseDate={movie.releaseDate}
-                dDay={movie.dday}
-              />
-            );
+            return <Movie movie={movie} />;
           })}
         </div>
       )}

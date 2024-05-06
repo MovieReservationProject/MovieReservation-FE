@@ -9,7 +9,7 @@ function UserActions({ isLoggedIn, toggleLogin }) {
   return (
     <div className="user-actions">
       {isLoggedIn ? (
-        <a href="auth/logout" onClick={toggleLogin}>
+        <a href="movie" onClick={toggleLogin}>
           <img src={LoginPassword} alt="로그아웃" />
           로그아웃
         </a>

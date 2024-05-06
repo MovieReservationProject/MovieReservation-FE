@@ -1,0 +1,16 @@
+.detail-wrapper {
+  margin: 50px;
+}
+
+.detail-info {
+  display: flex;
+}
+
+.movie-poster {
+  width: 185px;
+  height: 260px;
+}
+
+.movie-info {
+  margin-left: 30px;
+}
