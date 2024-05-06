@@ -12,7 +12,7 @@ const Movie = (locationtheaters) => {
 
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
-    const movieName = queryParams.get('movie_name');
+    const movieName = queryParams.get('titleKorean');
 
     useEffect(() => {
         if (movieName) {

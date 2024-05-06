@@ -9,6 +9,7 @@ import Main from "./pages/Reservation/Main";
 import Home from "./pages/Mainpage/Mainpage";
 import Login from "./pages/Login/Login";
 import SignIn from "./pages/SignIn/SignIn";
+import DetailPage from "./pages/DetailPage/DetailPage";
 
 function App() {
   return (
@@ -18,9 +19,10 @@ function App() {
           <Route path="/" element={<Main />}></Route>
           <Route path="/reservation" element={<Reservation/>}></Route>
           <Route path="/mypage/*" element={<MyPage />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/movie" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/movie/:title" element={<DetailPage />} />
         </Routes>
       </BrowserRouter>
     </div>
