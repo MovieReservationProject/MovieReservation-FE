@@ -17,10 +17,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />}></Route>
-          <Route
-            path="/reservation"
-            element={<Reservation></Reservation>}
-          ></Route>
+          <Route path="/reservation" element={<Reservation/>}></Route>
           <Route path="/mypage/*" element={<MyPage />} />
           <Route path="/movie" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -30,6 +27,7 @@ function App() {
       </BrowserRouter>
     </div>
   );
-}
+  }
+  
 
 export default App;

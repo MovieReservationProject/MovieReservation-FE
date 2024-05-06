@@ -27,6 +27,11 @@ function Movie({ movie }) {
     navigate(`/movie/${movie.titleKorean}`, { state: movie });
   };
 
+  const navigateToreservemovie=(movie_name)=>{
+    navigate(`/reservation?titleKorean=${encodeURIComponent(movie_name)}`)
+  }
+  
+
   return (
     <div className="movie-wrapper">
       <img
@@ -47,9 +52,9 @@ function Movie({ movie }) {
         <span className="movie-date">{formattedDate} 개봉</span>
         <span className="movie-dday">D-{movie.dday}</span>
       </div>
-      <div>{movie.director}</div>
-      <button className="movie-btn">
-        <a href="/reservation">예매하기</a>
+      <button className="movie-btn" onClick={()=>navigateToreservemovie(movie.titleKorean)}>
+        {/* <a href="/reservation">예매하기</a> */}
+        예매하기
       </button>
       {/* <button
         onClick={() => {

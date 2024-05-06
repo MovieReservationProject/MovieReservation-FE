@@ -4,9 +4,36 @@ function ReservationItem({ reservation }) {
   // isVisible 상태를 추가하여 예매 정보의 렌더링 여부를 결정합니다.
   const [isVisible, setIsVisible] = useState(true);
 
+  const deletedata = (reservationNumber) => {
+  
+    fetch(`http://3.37.251.140:8080/reservation/delete/${encodeURIComponent(reservationNumber)}`, {
+      method: 'DELETE',
+      headers: {
+        // 'Authorization': '',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Fail');
+      }
+      console.log('success');
+    })
+    .catch(error => {
+      console.error('Error!!', error);
+    });
+  };
+
   // 예매 취소 버튼 클릭 시 호출될 함수입니다.
-  const handleCancelClick = () => {
-    setIsVisible(false); // isVisible 상태를 false로 변경하여 정보를 숨깁니다.
+  const handleCancelClick = (reservationNumber) => {
+    // setIsVisible(false); // isVisible 상태를 false로 변경하여 정보를 숨깁니다.
+    // console.log(e.target.value)
+    console.log('reservationNumber',reservationNumber)
+    deletedata(reservationNumber) 
+  };
+
+  const handlechangeClick = () => {
+   
   };
 
   // isVisible이 false이면, 예매 정보를 렌더링하지 않습니다.
@@ -54,6 +81,14 @@ function ReservationItem({ reservation }) {
             className="round black cancel"
           >
             <span>예매취소</span>
+          </button>
+          <button
+            type="button"
+            data-status="94"
+            onClick={()=>handlechangeClick(reservation.reservationNumber)}
+            className="round black cancel"
+          >
+            <span>예매변경</span>
           </button>
         </div>
       </div>

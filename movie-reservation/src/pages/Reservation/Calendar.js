@@ -6,56 +6,14 @@ import {useDispatch} from 'react-redux';
 import { useSelector } from 'react-redux';
 import dayjs from 'dayjs'
 
-const Calendar = () => {
+const Calendar = (locationtheaters) => {
+
+   const locationTheatersArray = locationtheaters.locationtheaters.locationTheaters;
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const selectdate = useSelector((state)=>state.reservation.selectdate)
     const selectmovie = useSelector((state)=>state.reservation.selectmovie)
 
-    const locationtheaters = [
-        {movie:'가',
-         location : '서울',
-         cinema :['a'] ,
-         date:'20240423',
-         time:'1100',
-         seat:120   
-        },
-        {movie:'가',
-        location : '서울',
-        cinema :['a'] ,
-        date:'20240423',
-        time:'1300',
-        seat:167 
-       },
-       {movie:'가',
-       location : '서울',
-       cinema :['a'] ,
-       date:'20240428',
-       time:'1230',
-       seat:60
-      },
-      {movie:'나',
-      location : '서울',
-      cinema :['c'] ,
-      date:'20240428',
-      time:'1700',
-      seat:60
-     },
-     {movie:'나',
-     location : '서울',
-     cinema :['d'] ,
-     date:'20240428',
-     time:'1900',
-     seat:60
-    },
-        {movie:'가',
-        location : '인천',
-        cinema :['b']  ,
-     date:'20240428',
-     time:'2000',
-     seat:60
-        },
-    ]
      
     const now = dayjs(new Date())
     const today = new Date(now.format("YYYY-MM-DD"))
@@ -99,10 +57,6 @@ if (reserveweeklist && reserveweeklist.length>0){
 }
 }
 
-  console.log('selectdate',selectdate)
-  console.log('selectdate1',now)
-  console.log('selectdate2',today)
-
     useEffect(()=>{getDatesStartToLast(today,oneweeklater);},[])
 
 
@@ -124,7 +78,7 @@ if (reserveweeklist && reserveweeklist.length>0){
       // class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" 
       onClick={moveprevweek}>&lt;</button>
      <div  class="flex" >
-      {reserveweeklist.map((date, index)=>(      
+      {locationTheatersArray &&  reserveweeklist.map((date, index)=>(      
         <>
              <div style={{ position: 'relative', top: '-20px', left : '30px' , margin: '8px' }}>
                {(reserveweeklist && reserveweeklist.length>0) && result[index-1]==='n' && <div>{reserveweeklist[index+1].substring(6,7)}</div>}

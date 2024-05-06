@@ -6,6 +6,7 @@ import Movie from "./Movie";
 import ReactPaginate from "react-paginate";
 
 function Main() {
+
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState();
@@ -62,6 +63,7 @@ function Main() {
         <div className="main-loading">로딩중입니다...</div>
       ) : (
         <div className="movie-chart">
+
           {movies.map((movie) => {
             return <Movie movie={movie} />;
           })}

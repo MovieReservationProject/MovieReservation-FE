@@ -1,5 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
-import dayjs from 'dayjs'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const reservationtSlice = createSlice({
     name : 'reservation',
@@ -8,6 +7,10 @@ const reservationtSlice = createSlice({
         selectcinema:'',
         selectdate: new Date(),
         selecttime:'',
+        selectcinematype :'',
+        movies:[],
+        status: 'idle',
+        error: null,
     },
     reducers:{
         selectmovie(state,action){
@@ -24,14 +27,18 @@ const reservationtSlice = createSlice({
             state.selectdate = selectdate
         },
         selecttime(state,action){
-            const selecttime = action.payload
+            const selecttime = action.payload.start_time
+            const selectcinematype = action.payload.cinema_type
             state.selecttime = selecttime
+            state.selectcinematype = selectcinematype
         },
+        
 
 
-    }
+    },
 
     })
+
 
 export const reservationAction = reservationtSlice.actions;
 
