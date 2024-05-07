@@ -24,6 +24,11 @@
   padding-bottom: 25px;
 }
 
+.logo {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .logo img {
   width: 50px;
 }

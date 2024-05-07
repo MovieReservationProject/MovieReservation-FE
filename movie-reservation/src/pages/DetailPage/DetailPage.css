@@ -1,5 +1,5 @@
 .detail-wrapper {
-  margin: 50px;
+  margin: 50px 200px 50px 200px;
 }
 
 .detail-info {
@@ -7,10 +7,70 @@
 }
 
 .movie-poster {
-  width: 185px;
-  height: 260px;
+  width: 218px;
+  height: 312px;
+  border-radius: 6px;
 }
 
 .movie-info {
   margin-left: 30px;
+  width: 70%;
+}
+
+.movie-title {
+  font-size: 25px;
+}
+
+.movie-etitle {
+  font-size: 15px;
+}
+
+.rate-info {
+  margin-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #d9d6c8;
+}
+
+.ticket-rate {
+  font-size: 14px;
+}
+
+.rate-border {
+  margin-left: 20px;
+  font-size: 14px;
+  color: lightgray;
+}
+
+.score-rate {
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+.other-info {
+  margin-top: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.other-info-txt {
+  margin-top: 6px;
+}
+
+.detail-btn {
+  margin-top: 35px;
+  width: 150px;
+  height: 40px;
+  background-color: #ff4256;
+  border-color: #ff4256;
+  color: white;
+  outline: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.detail-summary {
+  margin-top: 50px;
 }

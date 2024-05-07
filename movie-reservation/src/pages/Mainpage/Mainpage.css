@@ -1,26 +1,27 @@
+.main-header {
+  margin: 50px 300px 50px 200px;
+  width: 72%;
+  padding-bottom: 30px;
+  border-bottom: 2px solid black;
+}
+
 .main-title {
   font-size: 35px;
   font-weight: bold;
-  margin: 50px 0 50px 15%;
-}
-
-.main-hr {
-  border: none;
-  border: 0.5px solid #212529;
-  margin-top: -30px;
-  margin-bottom: 60px;
 }
 
 .main-dropdown {
+  margin-top: 10px;
   border: 1.5px solid black;
   border-radius: 8px;
   width: 80px;
   height: 40px;
   position: absolute;
-  right: 10%;
+  right: 15%;
   font-size: 12px;
   font-weight: bold;
   padding-left: 9px;
+  cursor: pointer;
 }
 
 .main-loading {
@@ -37,12 +38,12 @@
   justify-content: center;
   align-items: center;
   margin: auto;
-  margin-top: 140px;
+  margin-top: 100px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 500px;
-  grid-gap: 20px;
-  padding: 50px;
+  grid-gap: 1px;
+  padding: 80px;
 }
 
 .main-paginate {

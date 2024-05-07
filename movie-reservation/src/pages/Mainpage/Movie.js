@@ -13,12 +13,21 @@ function Movie({ movie }) {
   }).format(date);
 
   const [isHover, setIsHover] = useState(false);
+  const [isHoverBtn, setIsHoverBtn] = useState(false);
 
   const handleMouseOver = () => {
     setIsHover(true);
   };
 
   const handleMouseOut = () => {
+    setIsHover(false);
+  };
+
+  const handleMouseOverBtn = () => {
+    setIsHover(true);
+  };
+
+  const handleMouseOutBtn = () => {
     setIsHover(false);
   };
 
@@ -34,13 +43,24 @@ function Movie({ movie }) {
 
   return (
     <div className="movie-wrapper">
-      <img
-        src={imgRoot}
-        className={isHover ? "movie-img-hover" : "movie-img"}
-        onMouseOver={handleMouseOver}
-        onMouseOut={handleMouseOut}
-        onClick={onClickMovie}
-      />
+      <div className="poster-wrapper">
+        <img
+          src={imgRoot}
+          className={isHover ? "movie-img-hover" : "movie-img"}
+          onMouseOver={handleMouseOver}
+          onMouseOut={handleMouseOut}
+          onClick={onClickMovie}
+        />
+        {isHover ? (
+          <div
+            className="poster-txt"
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+          >
+            상세보기
+          </div>
+        ) : null}
+      </div>
       <p className="movie-title">{movie.titleKorean}</p>
       <div>
         <span className="movie-sales-txt">예매율</span>
@@ -56,13 +76,6 @@ function Movie({ movie }) {
         {/* <a href="/reservation">예매하기</a> */}
         예매하기
       </button>
-      {/* <button
-        onClick={() => {
-          console.log(movie);
-        }}
-      >
-        확인
-      </button> */}
     </div>
   );
 }
