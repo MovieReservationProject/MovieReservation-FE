@@ -1,45 +1,50 @@
-import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import { reservationAction } from '../../store/reservation-slice';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { reservationAction } from "../../store/reservation-slice";
+import { useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+const Movie = (locationtheaters) => {
+  const dispatch = useDispatch();
+  const locationTheatersArray =
+    locationtheaters.locationtheaters.locationTheaters;
+  const movies = Array.from(
+    new Set(locationTheatersArray?.map((item) => item.movie_name))
+  );
 
-const Movie = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const movieName = queryParams.get("titleKorean");
 
-
-    const movies =['가','나','다']
-
-    const movietheaters = [
-        {movie:'가',
-         cinema :['a','b']    
-        },
-        {movie:'나',
-        cinema :['c','d']    
-        },
-        {movie:'다',
-        cinema :['e','f']    
-        }
-    ]
-
-
-    const dispatch = useDispatch();
-
-    const selectmoviehandler=(movie)=>{
-        dispatch(reservationAction.selectmovie(movie))
+  useEffect(() => {
+    if (movieName) {
+      dispatch(reservationAction.selectmovie(movieName));
     }
+  }, [dispatch, movieName]);
 
-    const selectmovie = useSelector((state)=>state.reservation.selectmovie)
+  const selectmoviehandler = (movie) => {
+    dispatch(reservationAction.selectmovie(movie));
+  };
 
-    return (
-        <div>
-               {movies.map((movie,index)=>(
-                <div key={index} onClick={()=>selectmoviehandler(movie)}
-                style={{backgroundColor : movie === selectmovie ? '#D3D3D3' : 'transparent', cursor: 'pointer' , textAlign:'center' }} 
-                // class="border-solid border-2 border-indigo-600 ml-2 "
-                >
-                    {movie}
-                </div>
-            ))}
-        </div>
-    );
+  const selectmovie = useSelector((state) => state.reservation.selectmovie);
+  return (
+    <div>
+      {movies &&
+        movies.map((movie, index) => (
+          <div
+            key={index}
+            onClick={() => selectmoviehandler(movie)}
+            style={{
+              backgroundColor:
+                movie === selectmovie ? "#D3D3D3" : "transparent",
+              cursor: "pointer",
+              textAlign: "center",
+            }}
+          >
+            {movie}
+          </div>
+        ))}
+    </div>
+  );
 };
 
 export default Movie;
