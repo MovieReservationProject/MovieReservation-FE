@@ -24,6 +24,20 @@ function SignIn() {
 
   let navigate = useNavigate();
 
+  // const checkSignIn = (event) => {
+  //   let totalInfo = "";
+  //   const u_name = document.getElementById("u_name").value;
+  //   const u_id = document.getElementById("u_id").value;
+  //   const u_pwd = document.getElementById("u_pwd").value;
+  //   const u_date = document.getElementById("u_date").value;
+  //   const u_phone = document.getElementById("u_phone").value;
+  //   totalInfo = u_name + u_id + u_pwd + u_date + u_phone;
+  //   if (totalInfo.trim() === "") {
+  //     alert("모든 입력값을 작성해주세요.");
+  //   }
+  //   return false;
+  // };
+
   const handleSignIn = async (event) => {
     event.preventDefault();
     const payload = {
@@ -42,12 +56,10 @@ function SignIn() {
         },
         body: JSON.stringify(payload),
       });
-
       if (response.ok) {
         const contentType = response.headers.get("Content-Type");
         if (contentType && contentType.includes("application/json")) {
           const data = await response.json();
-
           if (response.status === 200) {
             alert(
               userId +
@@ -107,7 +119,7 @@ function SignIn() {
             className="user-info-input"
             required
           />
-          <button className="idcheck-btn">아이디 중복확인</button>
+          {/* <button className="idcheck-btn">아이디 중복확인</button> */}
         </div>
         <div className="user-info">
           <span className="user-info-txt">비밀번호</span>

@@ -52,8 +52,9 @@ function Main() {
   return (
     <>
       <Header />
-      <h1 className="main-title">무비차트</h1>
-      <hr className="main-hr"></hr>
+      <div className="main-header">
+        <h1 className="main-title">무비차트</h1>
+      </div>
       <select className="main-dropdown">
         <option>{dropDownOption}</option>
         <option>{dropDownOption === "예매율순" ? "평점순" : "예매율순"}</option>
