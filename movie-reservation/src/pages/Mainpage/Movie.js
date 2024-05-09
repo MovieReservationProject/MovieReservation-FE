@@ -3,7 +3,7 @@ import "./Movie.css";
 import { Link, useNavigate } from "react-router-dom";
 
 function Movie({ movie }) {
-  const imgRoot = `/img/${movie.poster}.jpeg`;
+  //   const imgRoot = `/img/${movie.poster}.jpeg`;
 
   const date = new Date(movie.releaseDate);
   const formattedDate = new Intl.DateTimeFormat("ko-KR", {
@@ -36,16 +36,15 @@ function Movie({ movie }) {
     navigate(`/movie/${movie.titleKorean}`, { state: movie });
   };
 
-  const navigateToreservemovie=(movie_name)=>{
-    navigate(`/reservation?titleKorean=${encodeURIComponent(movie_name)}`)
-  }
-  
+  const navigateToreservemovie = (movie_name) => {
+    navigate(`/reservation?titleKorean=${encodeURIComponent(movie_name)}`);
+  };
 
   return (
     <div className="movie-wrapper">
       <div className="poster-wrapper">
         <img
-          src={imgRoot}
+          src={`https://github.com/sc-project2-MovieReservation/MovieReservation-FE/blob/dev/movie-reservation/public/img/${movie.poster}.jpeg?raw=true`}
           className={isHover ? "movie-img-hover" : "movie-img"}
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
@@ -72,7 +71,10 @@ function Movie({ movie }) {
         <span className="movie-date">{formattedDate} 개봉</span>
         <span className="movie-dday">D-{movie.dday}</span>
       </div>
-      <button className="movie-btn" onClick={()=>navigateToreservemovie(movie.titleKorean)}>
+      <button
+        className="movie-btn"
+        onClick={() => navigateToreservemovie(movie.titleKorean)}
+      >
         {/* <a href="/reservation">예매하기</a> */}
         예매하기
       </button>

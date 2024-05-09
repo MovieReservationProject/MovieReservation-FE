@@ -45,6 +45,7 @@ function Login() {
     if (response.status === 200) {
       setLoginCheck(false);
       sessionStorage.setItem("myId", userId);
+
       console.log("로그인성공, 아이디: " + userId);
       alert("로그인이 완료되었습니다. 홈으로 이동합니다.");
       navigate("/movie");
