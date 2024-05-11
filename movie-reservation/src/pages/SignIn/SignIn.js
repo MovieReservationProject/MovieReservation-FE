@@ -18,7 +18,8 @@ function SignIn() {
   const [userNum, setUserNum] = useState("");
 
   const [showPwd, setShowPwd] = useState(false);
-  const handleShowPwd = () => {
+  const handleShowPwd = (event) => {
+    event.preventDefault();
     setShowPwd(!showPwd);
   };
 

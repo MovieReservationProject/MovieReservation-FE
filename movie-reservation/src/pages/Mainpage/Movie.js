@@ -75,7 +75,6 @@ function Movie({ movie }) {
         className="movie-btn"
         onClick={() => navigateToreservemovie(movie.titleKorean)}
       >
-        {/* <a href="/reservation">예매하기</a> */}
         예매하기
       </button>
     </div>
