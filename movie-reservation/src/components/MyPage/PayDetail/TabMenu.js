@@ -44,7 +44,7 @@ function TabMenu({ activeTab, setActiveTab }) {
           className={activeTab === 2 ? "active" : ""}
           onClick={() => setActiveTab(2)}
         >
-          <Link to="mypage/userInfo">
+          <Link to="/mypage/userInfo">
             <span>MY 정보관리</span>
           </Link>
         </li>

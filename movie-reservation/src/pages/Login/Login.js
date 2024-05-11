@@ -44,10 +44,13 @@ function Login() {
 
     if (response.status === 200) {
       setLoginCheck(false);
-      sessionStorage.setItem("myId", userId);
+      sessionStorage.setItem("myId", userId); // 사용자 ID 세션 스토리지에 저장
+      const token = response.headers.get("Token"); // 토큰 받아오기
+      console.log("Token:", token);
       console.log("로그인성공, 아이디: " + userId);
       alert("로그인이 완료되었습니다. 홈으로 이동합니다.");
-      navigate("/movie");
+      // navigate("/movie");
+      console.log(response);
     } else {
       alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
       setLoginCheck(true);
