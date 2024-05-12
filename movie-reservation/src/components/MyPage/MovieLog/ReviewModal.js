@@ -20,8 +20,6 @@ function ReviewModal(props) {
   // 관람평 및 평점 제출 처리
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitted Review: ", review);
-    console.log("Submitted Rating: ", rating);
     onSubmit(review, rating); // 평점도 함께 전달
     onClose(); // 제출 후 모달창 닫기
   };

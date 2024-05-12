@@ -3,7 +3,7 @@ import "./Movie.css";
 import { Link, useNavigate } from "react-router-dom";
 
 function Movie({ movie }) {
-  const imgRoot = `/img/${movie.poster}.jpeg`;
+  //   const imgRoot = `/img/${movie.poster}.jpeg`;
 
   const date = new Date(movie.releaseDate);
   const formattedDate = new Intl.DateTimeFormat("ko-KR", {
@@ -44,7 +44,7 @@ function Movie({ movie }) {
     <div className="movie-wrapper">
       <div className="poster-wrapper">
         <img
-          src={imgRoot}
+          src={`https://github.com/sc-project2-MovieReservation/MovieReservation-FE/blob/dev/movie-reservation/public/img/${movie.poster}.jpeg?raw=true`}
           className={isHover ? "movie-img-hover" : "movie-img"}
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}

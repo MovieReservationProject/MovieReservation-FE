@@ -87,7 +87,6 @@ function MovieInfo() {
 
   // 관람평 제출 처리
   const handleSubmitReview = (submittedReview, submittedRating) => {
-    console.log("관람평이 제출되었습니다.");
     setReviews((prev) => ({
       ...prev,
       [currentMovieTitle]: {
