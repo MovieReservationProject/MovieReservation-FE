@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import PhoneNumberEdit from "./PhoneNumberEdit";
 import PasswordEdit from "./PasswordEdit";
 
@@ -6,17 +7,63 @@ function PersonalInfo() {
   const [isPasswordChanged, setIsPasswordChanged] = useState(false);
   const [showPasswordChangedAlert, setShowPasswordChangedAlert] =
     useState(false);
+  const [userId, setUserId] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginCheck, setLoginCheck] = useState(false);
+  const [userInfo, setUserInfo] = useState([]);
+  useEffect(() => {
+    fetchData2();
+  }, []);
 
-  const handlePasswordChange = () => {
-    setIsPasswordChanged(true);
+  const fetchData2 = async () => {
+    const token = sessionStorage.getItem("token");
+    try {
+      const response = await fetch("http://3.37.251.140:8080/mypage/userInfo", {
+        method: "GET",
+        headers: {
+          Token: sessionStorage.getItem("token"),
+        },
+      });
+      const data = await response.json();
+      setUserInfo(data.data);
+    } catch (error) {
+      console.error("데이터 가져오기 중 오류 발생:", error);
+    }
+  };
+
+  console.log('userinfo',userInfo.PhoneNumber)
+
+  const updateUserInfo = async () => {
+    const token = sessionStorage.getItem("Token");
+    if (!token) {
+      console.error("토큰이 존재하지 않습니다.");
+      return; // 토큰이 없으면 여기서 함수 실행을 멈춥니다.
+    }
+    const response = await fetch("http://3.37.251.140:8080/mypage/userInfo", {
+      method: "PUT",
+      headers: {
+        Token: sessionStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    });
+    if (response.ok) {
+      alert("사용자 정보가 업데이트되었습니다.");
+      sessionStorage.setItem("userInfo", JSON.stringify(userInfo)); // 세션 스토리지 업데이트
+    }
   };
 
   const handleConfirmClick = () => {
     if (isPasswordChanged) {
-      alert("비밀번호가 변경되었습니다."); // 사용자에게 변경 알림
+      alert("비밀번호가 변경되었습니다.");
       setShowPasswordChangedAlert(true);
-      setTimeout(() => setShowPasswordChangedAlert(false), 3000); // 3초 후 메시지 숨김 (이 부분은 이미 있음)
+      setTimeout(() => setShowPasswordChangedAlert(false), 3000);
     }
+    updateUserInfo();
+  };
+
+  const handlePasswordChange = () => {
+    setIsPasswordChanged(true);
   };
 
   return (
@@ -31,22 +78,22 @@ function PersonalInfo() {
             <tr className="settings-row">
               <td className="settings-label">이름</td>
               <td className="settings-value">
-                <p>홍길동</p>
+                <p>{userInfo.name}</p>
               </td>
             </tr>
             <tr className="settings-row">
               <td className="settings-label">아이디</td>
               <td className="settings-value">
-                <p>abc</p>
+                <p>{userInfo.myId}</p>
               </td>
             </tr>
             <tr className="settings-row">
               <td className="settings-label">생년월일</td>
               <td className="settings-value">
-                <p>1999년 10월 26일 </p>
+                <p>{userInfo.birthday} </p>
               </td>
             </tr>
-            <PhoneNumberEdit />
+            <PhoneNumberEdit userInfo={userInfo} setUserInfo={setUserInfo} />
             <PasswordEdit onPasswordChange={handlePasswordChange} />
           </tbody>
         </table>

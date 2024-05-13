@@ -24,36 +24,48 @@ const Myreserve = (locationtheaters) => {
     //         cinema_type : item.cinema_type
     //     }));
 
+    // const reservedata= {
+    //     reserve_time: selecttime,
+    //     cinema_name: selectcinema,
+    //     movie_name : selectmovie,
+    //     reserve_date: reservedate,
+    //     cinema_type : selectcinematype
+
+    // }
+
     const reservedata= {
-        start_time: selecttime,
+        reserve_time: selecttime,
         cinema_name: selectcinema,
         movie_name : selectmovie,
-        start_date: reservedate,
+        reserve_date: reservedate,
         cinema_type : selectcinematype
 
     }
 
-    console.log('reservedata',reservedata)
-    console.log(JSON.stringify(reservedata))
 
 
 
     const clickreservehandler= async()=>{
         const token = sessionStorage.getItem('token');
-        console.log('tokeeen',token)
         if (!token) {
             console.log('Token not found');
           }
         try {
-            const response = await fetch('http://3.37.251.140:8080/reservation/add', {
-              method: 'POST',
+            const response = await fetch("http://3.37.251.140:8080/reservation/add", {
+              method: "POST",
               headers: {
                 // 'Authorization': `Bearer ${token}`,
-                // 'Authorization': sessionStorage.getItem('token'),
-                'Authorization':  'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXllb24iLCJyb2xlIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MTUwMDkyODIsImV4cCI6MTcxNTAxMjg4Mn0.ejcAB1j-5GVOsl_RUWhSiSo3LNqg28zrwouXPA0WyDw',
-                'Content-Type': 'application/json',
+                "Token": sessionStorage.getItem('token'),
+                "Content-Type": 'application/json',
               },
-              body: JSON.stringify(reservedata),
+            //   body: JSON.stringify(reservedata),
+            body: JSON.stringify({
+                'reserve-time': selecttime,
+                'cinema-name': selectcinema,
+                'movie-name': selectmovie,
+                'reserve-date': reservedate,
+                'cinema-type' : selectcinematype
+              }),
             });
       
             if (!response.ok) {

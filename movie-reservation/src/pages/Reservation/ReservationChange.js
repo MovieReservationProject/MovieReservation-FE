@@ -11,9 +11,14 @@ import Myreserve from './Myreserve';
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { useSearchParams } from 'react-router-dom';
+import Mychangereserve from './Mychangereserve';
+import { useParams ,useLocation} from 'react-router-dom';
 
-const Reservation = () => {
+const ReservationChange = () => {
+  const { state } = useLocation();
 
+  const location = useLocation();
+  const {myreserveNum , mytitleKorean, mycinemaName,mymoviedate,myreserveid}= location.state;
 
   const [locationtheaters,setlocationtheaters] = useState([])
   useEffect(() => {
@@ -30,21 +35,24 @@ const Reservation = () => {
   };
 }
 
-    const selectmovie = useSelector((state)=>state.reservation.selectmovie)
-    const selectlocation = useSelector((state)=>state.reservation.selectlocation)
-    const selectcinema = useSelector((state)=>state.reservation.selectcinema)
-    const selectdate = useSelector((state)=>state.reservation.selectdate)
-    const selecttime = useSelector((state)=>state.reservation.selecttime)
-    const reservedate =  dayjs(selectdate).format("YYYYMMDD")
+  console.log('locationtheaters!!!!!!!!',locationtheaters)
+  console.log('resrerere',myreserveNum)
+  console.log('resrerere111',mytitleKorean)
+  console.log('resrerere',mycinemaName)
+  console.log('resrerere2222',mymoviedate)
 
+  // const locationtheaters =  [{
+  //   reserveNum: reserveNum,
+  //   movie_name: titleKorean,
+  //   cinema_name : cinemaName}]
 
-
-      // const myreservemovie =  locationtheaters.filter(element=> element.movie === selectmovie
-      //   && element.date === reservedate && element.cinema === selectcinema && element.time === selecttime);
-    
-      // const selectcinematype = myreservemovie[0]?.cinema_type
-    
-
+  // const locationTheaters = {
+  //     "locationTheaters": locationtheaters.map(item => ({
+  //         reserveNum: item.reserveNum,
+  //         movie_name: item.movie_name,
+  //         cinema_name: item.cinema_name
+  //     }))
+  // };
       return (
         <>
         <Header></Header>
@@ -54,7 +62,8 @@ const Reservation = () => {
                 영화
               </div>
               <div>
-           <Movie locationtheaters={locationtheaters}></Movie>
+           <Movie locationtheaters={locationtheaters} myreserveNum={myreserveNum} 
+           mytitleKorean ={mytitleKorean}> </Movie>
            </div>
            </div>
              <div class="flex-none w-32 border-r-2">
@@ -62,18 +71,21 @@ const Reservation = () => {
                 극장
               </div>
               <div>
-             <Cinema locationtheaters={locationtheaters}></Cinema>
+             <Cinema locationtheaters={locationtheaters} myreserveNum={myreserveNum} 
+           mytitleKorean ={mytitleKorean} mycinemaName={mycinemaName}></Cinema>
              </div>
            </div>
            <div >
            <div class="text-center font-semibold grow h-10 mb-1 mt-1  border-b-2 border-black-500">
-            {dayjs(selectdate).format("YYYYMMDD")}
+            {dayjs(mymoviedate).format("YYYYMMDD")}
             </div>
             <div class="mt-6 w-auto">
               <div class="mx-4 justify-center">
-           <Calendar locationtheaters={locationtheaters}></Calendar>
+           <Calendar locationtheaters={locationtheaters} myreserveNum={myreserveNum} 
+           mytitleKorean ={mytitleKorean} mycinemaName={mycinemaName} mymoviedate={mymoviedate}></Calendar>
            </div>
-           <Timetable locationtheaters={locationtheaters}></Timetable>
+           <Timetable locationtheaters={locationtheaters} myreserveNum={myreserveNum} 
+           mytitleKorean ={mytitleKorean} mycinemaName={mycinemaName} mymoviedate={mymoviedate}></Timetable>
            </div>
            </div>
            <div class="border-l-2">
@@ -81,7 +93,8 @@ const Reservation = () => {
              
            </div>
            <div class="mx-4 justify-center">
-             <Myreserve locationtheaters={locationtheaters}></Myreserve>
+             <Mychangereserve locationtheaters={locationtheaters} myreserveNum={myreserveNum} 
+           mytitleKorean ={mytitleKorean} mycinemaName={mycinemaName} mymoviedate={mymoviedate} myreserveid={myreserveid}></Mychangereserve>
            </div>
           
            </div>
@@ -92,4 +105,4 @@ const Reservation = () => {
     );
 };
 
-export default Reservation;
+export default ReservationChange;

@@ -1,15 +1,21 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function ReservationItem({ reservation }) {
   // isVisible 상태를 추가하여 예매 정보의 렌더링 여부를 결정합니다.
+  console.log('ReservationItem',reservation)
+
   const [isVisible, setIsVisible] = useState(true);
 
-  const deletedata = (reservationNumber) => {
+  const encodedReserveId = encodeURIComponent(reservation.reserveId);
+  console.log(encodedReserveId)
+
+  const deletedata = (reserveId) => {
   
-    fetch(`http://3.37.251.140:8080/reservation/delete/${encodeURIComponent(reservationNumber)}`, {
+    fetch(`http://3.37.251.140:8080/reservation/delete?reservation-id=${encodedReserveId}`, {
       method: 'DELETE',
       headers: {
-        // 'Authorization': '',
+        "Token": sessionStorage.getItem('token'),
         'Content-Type': 'application/json'
       }
     })
@@ -24,17 +30,20 @@ function ReservationItem({ reservation }) {
     });
   };
 
+  const navigate = useNavigate();
+ 
+
   // 예매 취소 버튼 클릭 시 호출될 함수입니다.
-  const handleCancelClick = (reservationNumber) => {
+  const handleCancelClick = (reserveId) => {
     // setIsVisible(false); // isVisible 상태를 false로 변경하여 정보를 숨깁니다.
     // console.log(e.target.value)
-    console.log('reservationNumber',reservationNumber)
-    deletedata(reservationNumber) 
+    deletedata(reserveId) 
   };
 
-  const handlechangeClick = () => {
-   
-  };
+
+  const navigateTochangereservemovie=(myreserveNum, mytitleKorean, mycinemaName ,mymoviedate,myreserveid)=>{
+    navigate(`/reservationChange/${myreserveNum}`, { state: { myreserveNum , mytitleKorean, mycinemaName,mymoviedate,myreserveid} });
+  }
 
   // isVisible이 false이면, 예매 정보를 렌더링하지 않습니다.
   if (!isVisible) {
@@ -45,7 +54,7 @@ function ReservationItem({ reservation }) {
     <div className="box-set-info">
       <div className="box-number">
         <em>예매번호</em>
-        <strong>{reservation.reservationNumber}</strong>
+        <strong>{reservation.reserveNum}</strong>
       </div>
       <div className="box-info">
         <div className="detail-area">
@@ -58,14 +67,20 @@ function ReservationItem({ reservation }) {
             <ul className="reservation-mv-info">
               <li>
                 <dl>
+                  <dt>관람영화</dt>
+                  <dd>{reservation.titleKorean}</dd>
+                </dl>
+              </li>
+              <li>
+                <dl>
                   <dt>관람극장</dt>
-                  <dd>{reservation.theater}</dd>
+                  <dd>{reservation.cinemaName}</dd>
                 </dl>
               </li>
               <li>
                 <dl>
                   <dt>관람일시</dt>
-                  <dd>{reservation.dateTime}</dd>
+                  <dd>{reservation.movieDate} {reservation.startTime}</dd>
                 </dl>
               </li>
             </ul>
@@ -77,7 +92,7 @@ function ReservationItem({ reservation }) {
           <button
             type="button"
             data-status="94"
-            onClick={handleCancelClick}
+            onClick={()=>handleCancelClick(reservation.reserveId)}
             className="round black cancel"
           >
             <span>예매취소</span>
@@ -85,7 +100,7 @@ function ReservationItem({ reservation }) {
           <button
             type="button"
             data-status="94"
-            onClick={()=>handlechangeClick(reservation.reservationNumber)}
+            onClick={()=>navigateTochangereservemovie(reservation.reserveNum, reservation.titleKorean, reservation.cinemaName ,reservation.movieDate ,reservation.reserveId )}
             className="round black cancel"
           >
             <span>예매변경</span>
