@@ -18,7 +18,6 @@ const reservationtSlice = createSlice({
             state.selectmovie = selectmovie
         },
         selectcinema(state,action){
-            const movietheaters = action.payload.movietheaters
             const selectcinema = action.payload
             state.selectcinema = selectcinema
         },

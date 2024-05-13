@@ -5,7 +5,9 @@ import { useSelector } from 'react-redux';
 import dayjs from 'dayjs'
 import ErrorModal from './ErrorModal';
 
-const Timetable = (locationtheaters) => {
+const Timetable = (locationtheaters , myreserveNum, mytitleKorean) => {
+
+    const reserveNum = locationtheaters.myreserveNum
 
 
     const locationTheatersArray = locationtheaters.locationtheaters.locationTheaters;
@@ -68,9 +70,13 @@ const Timetable = (locationtheaters) => {
     const closeModal = () => {
       setModalIsOpen(false);
     }
+    
+    console.log('timetablelist!@!@!@!@',timetablelist)
+    console.log('reserveNum!@!@!@!@',reserveNum)
 
     useEffect(()=>{
-        if (selectmovie && selectcinema && selectdate && timetablelist.length===0){
+        if (!reserveNum &&selectmovie && selectcinema && selectdate && timetablelist.length===0){
+            console.log('없다!!')
             setErrorMessage("해당일자에 상영하는 영화가 없습니다.");
             openModal();
           }

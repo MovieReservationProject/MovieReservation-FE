@@ -6,13 +6,16 @@ import {useDispatch} from 'react-redux';
 import { useSelector } from 'react-redux';
 import dayjs from 'dayjs'
 
-const Calendar = (locationtheaters) => {
+const Calendar = (locationtheaters , myreserveNum, mytitleKorean ,mycinemaName ,mymoviedate) => {
 
    const locationTheatersArray = locationtheaters.locationtheaters.locationTheaters;
+   const reserveNum = locationtheaters.myreserveNum
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const selectdate = useSelector((state)=>state.reservation.selectdate)
     const selectmovie = useSelector((state)=>state.reservation.selectmovie)
+    const moviedate =locationtheaters.mymoviedate
+
 
      
     const now = dayjs(new Date())
@@ -63,6 +66,13 @@ if (reserveweeklist && reserveweeklist.length>0){
     const dispatch = useDispatch();
 
 
+    useEffect(() => {
+      if (reserveNum) {
+        dispatch(reservationAction.selectdate(moviedate));
+      }
+    }, [dispatch,moviedate]);
+
+
     const setReservetdate=(reservedate)=>{
         dispatch(reservationAction.selectdate(reservedate))
     }
@@ -74,14 +84,14 @@ if (reserveweeklist && reserveweeklist.length>0){
       <div  class="flex">
      </div>
       <div class="flex mx-10 ">
-      <button 
+      {!reserveNum && <button 
       // class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" 
-      onClick={moveprevweek}>&lt;</button>
+      onClick={moveprevweek}>&lt;</button>}
      <div  class="flex" >
-      {locationTheatersArray &&  reserveweeklist.map((date, index)=>(      
+      { !reserveNum && locationTheatersArray &&  reserveweeklist.map((date, index)=>(      
         <>
              <div style={{ position: 'relative', top: '-20px', left : '30px' , margin: '8px' }}>
-               {(reserveweeklist && reserveweeklist.length>0) && result[index-1]==='n' && <div>{reserveweeklist[index+1].substring(6,7)}</div>}
+               {(reserveweeklist && reserveweeklist.length>0) && result[index-1]==='n' && <div>{reserveweeklist[index+1]?.substring(6,7)}</div>}
               </div>         
                 <div  style={{ margin : '3px', color: dayjs(date).format("dddd").substring(0,3)==='Sun' ? 'red' : dayjs(date).format("dddd").substring(0,3)==='Sat'  ? 'blue' :'black' }} 
                 // class="border-solid border-2 border-indigo-600 ml-2 "
@@ -96,7 +106,7 @@ if (reserveweeklist && reserveweeklist.length>0){
                 </>
             ))}
                   </div>
-      <button class="ml-4" onClick={movenextweek}>&gt;</button>
+                  {!reserveNum &&<button class="ml-4" onClick={movenextweek}>&gt;</button>}
       </div>
       </>
     );

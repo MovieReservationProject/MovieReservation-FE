@@ -43,7 +43,10 @@ function Login() {
     const result = await response.json();
 
     if (response.status === 200) {
+      const token = response.headers.get("Token");
+      console.log('token',token)
       setLoginCheck(false);
+      sessionStorage.setItem("token", token);
       sessionStorage.setItem("myId", userId);
       console.log("로그인성공, 아이디: " + userId);
       alert("로그인이 완료되었습니다. 홈으로 이동합니다.");
