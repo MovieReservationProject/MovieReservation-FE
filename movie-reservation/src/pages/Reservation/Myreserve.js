@@ -23,14 +23,6 @@ const Myreserve = (locationtheaters) => {
       element.cinema_type === selectcinematype
   );
 
-  // const reservedata = myreservemovie?.map(item => ({
-  //         start_time: item.start_time,
-  //         cinema_name: item.cinema_name,
-  //         movie_name : item.movie_name,
-  //         start_date: item.start_date,
-  //         cinema_type : item.cinema_type
-  //     }));
-
   const reservedata = {
     start_time: selecttime,
     cinema_name: selectcinema,

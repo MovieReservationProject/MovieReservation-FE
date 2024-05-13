@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./MovieLog.css";
 import ReviewModal from "./ReviewModal";
@@ -15,51 +16,25 @@ function MovieInfo() {
   const [currentMovieTitle, setCurrentMovieTitle] = useState("");
   const [modalMode, setModalMode] = useState("create");
   const navigate = useNavigate();
-
   const [itemsPerPage] = useState(5);
+  const [myMovieList, setMyMovieList] = useState([]);
 
-  const my_movie_list = [
-    {
-      posterUrl:
-        "https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202404/20703_103_1.jpg",
-      movieTitle: "쿵푸팬더4",
-      theater: "CGV 인천가정",
-      dateTime: "2024-04-10",
-      time: "14:50",
-    },
-    {
-      posterUrl:
-        "https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202402/20808_103_1.jpg",
-      movieTitle: "파묘",
-      theater: "CGV 인천가정",
-      dateTime: "2024-04-10",
-      time: "14:50",
-    },
-    {
-      posterUrl:
-        "https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202405/21037_103_1.jpg",
-      movieTitle: "가필드 더 무비",
-      theater: "메가박스 코엑스",
-      dateTime: "2024-04-15",
-      time: "18:30",
-    },
-    {
-      posterUrl:
-        "https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202405/21095_103_1.jpg",
-      movieTitle: "혹성탈출: 새로운 시대",
-      theater: "롯데시네마 월드타워",
-      dateTime: "2024-04-20",
-      time: "20:00",
-    },
-    {
-      posterUrl:
-        "https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202406/20970_103_1.jpg",
-      movieTitle: "인사이드 아웃 2",
-      theater: "CGV 천호",
-      dateTime: "2024-04-25",
-      time: "22:15",
-    },
-  ];
+  useEffect(() => {
+    // API 호출을 통해 리뷰 데이터를 가져옴
+    const fetchReviews = async () => {
+      try {
+        const response = await axios.get(
+          "http://3.37.251.140:8080/mypage/review/list?page=0&size=1&sort=string"
+        );
+        // 응답에서 데이터를 추출하여 상태에 저장
+        setMyMovieList(response.data);
+      } catch (error) {
+        console.error("리뷰 데이터를 불러오는 데 실패했습니다.", error);
+      }
+    };
+
+    fetchReviews();
+  }, []);
 
   // 모달 열기
   const openModal = (movieTitle) => {
@@ -115,7 +90,7 @@ function MovieInfo() {
   // 페이지네이션 로직
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = my_movie_list.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = myMovieList.slice(indexOfFirstItem, indexOfLastItem);
 
   // 페이지 번호 변경 처리
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -178,7 +153,7 @@ function MovieInfo() {
           </div>
         </div>
         <ul className="my_movie_list">
-          {currentItems.map((item, index) => (
+          {myMovieList.map((item, index) => (
             <li key={index}>
               <div className="poster">
                 <a href="#none" title="영화상세정보로 이동">
@@ -207,10 +182,10 @@ function MovieInfo() {
             </li>
           ))}
         </ul>
-        {my_movie_list.length > itemsPerPage && (
+        {myMovieList.length > itemsPerPage && (
           <Pagination
             itemsPerPage={itemsPerPage}
-            totalItems={my_movie_list.length}
+            totalItems={myMovieList.length}
             paginate={paginate}
           />
         )}

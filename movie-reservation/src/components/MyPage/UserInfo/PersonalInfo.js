@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
 import PhoneNumberEdit from "./PhoneNumberEdit";
 import PasswordEdit from "./PasswordEdit";
 
@@ -8,77 +7,41 @@ function PersonalInfo() {
   const [isPasswordChanged, setIsPasswordChanged] = useState(false);
   const [showPasswordChangedAlert, setShowPasswordChangedAlert] =
     useState(false);
-  const userName = useSelector((state) => state.reservation.selectmovie);
-  const userId = useSelector((state) => state.reservation.selectcinema);
-  const userNum = useSelector((state) => state.reservation.selectcinematype);
-  const selectdate = useSelector((state) => state.reservation.selectdate);
-  const userDate = dayjs(selectdate).format("YYYY-MM-DD");
-  const [userInfo, setUserInfo] = useState({
-    name: "",
-    myId: "",
-    birthday: "",
-    phoneNumber: "",
-  });
-
+  const [userId, setUserId] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginCheck, setLoginCheck] = useState(false);
+  const [userInfo, setUserInfo] = useState([]);
   useEffect(() => {
-    const storedUserInfo = sessionStorage.getItem("userInfo");
-    if (storedUserInfo) {
-      setUserInfo(JSON.parse(storedUserInfo));
-    } else {
-      fetchUserInfo();
-    }
+    fetchData2();
   }, []);
 
-  const userdata = {
-    name: userName,
-    myId: userId,
-    birthday: userDate,
-    phoneNumber: userNum,
-  };
-
-  console.log("userdata", userdata);
-  console.log(JSON.stringify(userdata));
-
-  const clickreservehandler = async () => {
-    const token = sessionStorage.getItem("Token");
-    console.log("Token", token);
-    if (!token) {
-      console.log("Token not found");
-      return; // 토큰이 없으면 여기서 함수 실행을 멈춥니다.
-    }
-    try {
-      const response = await fetch("http://3.37.251.140:8080/mypage/userInfo", {
-        method: "POST",
-        headers: {
-          Authorization: token, // "Authorization" 헤더에 동적으로 토큰을 추가
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userdata),
-      });
-
-      if (!response.ok) {
-        throw new Error("error");
-      }
-    } catch (error) {
-      console.log("오류발생!!:", error);
-    }
-  };
-  const fetchUserInfo = async () => {
+  const fetchData2 = async () => {
+    const token = sessionStorage.getItem("token");
     try {
       const response = await fetch("http://3.37.251.140:8080/mypage/userInfo", {
         method: "GET",
+        headers: {
+          Token: sessionStorage.getItem("token"),
+        },
       });
       const data = await response.json();
-      setUserInfo({ ...data });
+      setUserInfo(data.data);
     } catch (error) {
-      console.error("사용자 정보 가져오기 실패:", error);
+      console.error("데이터 가져오기 중 오류 발생:", error);
     }
   };
 
   const updateUserInfo = async () => {
+    const token = sessionStorage.getItem("Token");
+    if (!token) {
+      console.error("토큰이 존재하지 않습니다.");
+      return; // 토큰이 없으면 여기서 함수 실행을 멈춥니다.
+    }
     const response = await fetch("http://3.37.251.140:8080/mypage/userInfo", {
       method: "PUT",
       headers: {
+        Authorization:
+          "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXllb24iLCJyb2xlIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MTUwMDkyODIsImV4cCI6MTcxNTAxMjg4Mn0.ejcAB1j-5GVOsl_RUWhSiSo3LNqg28zrwouXPA0WyDw",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(userInfo),
@@ -135,7 +98,7 @@ function PersonalInfo() {
         </table>
         <div className="settings-btn">
           <button className="settings-cancle-btn">취소</button>
-          <button className="settings-ok-btn" onClick={clickreservehandler}>
+          <button className="settings-ok-btn" onClick={handleConfirmClick}>
             확인
           </button>
         </div>
