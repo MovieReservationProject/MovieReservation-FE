@@ -6,9 +6,7 @@ import Movie from "./Movie";
 import ReactPaginate from "react-paginate";
 
 function Main() {
-
   const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState();
   const [dropDownOption, setDropDownOption] = useState("예매율순");
 
@@ -42,11 +40,15 @@ function Main() {
     } else if (page === 1) getMovies();
   };
 
-  const handleDropdown = () => {
-    if (dropDownOption === "예매율순") {
-      // 예매율순으로 정렬
-    } else if (dropDownOption === "평점순") {
-      // 평점순으로 정렬
+  const handleDropdown = (e) => {
+    const optionValue = e.target.value;
+
+    if (optionValue === 1) {
+      let copy = [...movies];
+      copy.sort((a, b) => b.ticketSales - a.ticketSales);
+    } else if (optionValue === 2) {
+      let copy = [...movies];
+      copy.sort((a, b) => b.scoreAvg - a.scoreAvg);
     }
   };
 
@@ -56,20 +58,19 @@ function Main() {
       <div className="main-header">
         <h1 className="main-title">무비차트</h1>
       </div>
-      <select className="main-dropdown">
-        <option>{dropDownOption}</option>
-        <option>{dropDownOption === "예매율순" ? "평점순" : "예매율순"}</option>
+      <select className="main-dropdown" onChange={handleDropdown}>
+        <option value={1}>{dropDownOption}</option>
+        <option value={2}>
+          {dropDownOption === "예매율순" ? "평점순" : "예매율순"}
+        </option>
       </select>
-      {isLoading ? (
-        <div className="main-loading">로딩중입니다...</div>
-      ) : (
-        <div className="movie-chart">
 
-          {movies.map((movie) => {
-            return <Movie movie={movie} />;
-          })}
-        </div>
-      )}
+      <div className="movie-chart">
+        {movies.map((movie) => {
+          return <Movie movie={movie} />;
+        })}
+      </div>
+
       <ReactPaginate
         pageCount={2}
         pageRangeDisplayed={2}
