@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./SignIn.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -25,19 +25,11 @@ function SignIn() {
 
   let navigate = useNavigate();
 
-  // const checkSignIn = (event) => {
-  //   let totalInfo = "";
-  //   const u_name = document.getElementById("u_name").value;
-  //   const u_id = document.getElementById("u_id").value;
-  //   const u_pwd = document.getElementById("u_pwd").value;
-  //   const u_date = document.getElementById("u_date").value;
-  //   const u_phone = document.getElementById("u_phone").value;
-  //   totalInfo = u_name + u_id + u_pwd + u_date + u_phone;
-  //   if (totalInfo.trim() === "") {
-  //     alert("모든 입력값을 작성해주세요.");
-  //   }
-  //   return false;
-  // };
+  const nameFocus = useRef();
+
+  useEffect(() => {
+    nameFocus.current.focus();
+  }, []);
 
   const handleSignIn = async (event) => {
     event.preventDefault();
@@ -57,24 +49,35 @@ function SignIn() {
         },
         body: JSON.stringify(payload),
       });
-      if (response.ok) {
-        const contentType = response.headers.get("Content-Type");
-        if (contentType && contentType.includes("application/json")) {
-          const data = await response.json();
-          if (response.status === 200) {
-            alert(
-              userId +
-                "님, 회원가입이 완료되었습니다. 로그인 페이지로 이동합니다."
-            );
-            navigate("/login");
-          } else if (response.status === 400) {
-            alert("회원가입에 실패했습니다.");
+      if (
+        userName != "" &&
+        userId == "" &&
+        userPwd == "" &&
+        userDate == "" &&
+        userNum == ""
+      ) {
+        if (response.ok) {
+          const contentType = response.headers.get("Content-Type");
+          if (contentType && contentType.includes("application/json")) {
+            const data = await response.json();
+            if (response.status === 200) {
+              alert(
+                userId +
+                  "님, 회원가입이 완료되었습니다. 로그인 페이지로 이동합니다."
+              );
+              navigate("/login");
+            } else if (response.status === 400) {
+              alert("회원가입에 실패했습니다.");
+            }
+          } else {
+            throw new Error("서버에서 JSON 형식의 응답을 반환하지 않았습니다.");
           }
         } else {
-          throw new Error("서버에서 JSON 형식의 응답을 반환하지 않았습니다.");
+          throw new Error("서버 요청 실패: " + response.status);
         }
       } else {
-        throw new Error("서버 요청 실패: " + response.status);
+        alert("모든 입력값을 작성해주세요.");
+        nameFocus.current.focus();
       }
     } catch (error) {
       console.error("오류가 발생했습니다. 오류명: ", error);
@@ -106,6 +109,7 @@ function SignIn() {
             onChange={(e) => setUserName(e.target.value)}
             placeholder="이름을 입력해주세요"
             className="user-info-input"
+            ref={nameFocus}
             required
           />
         </div>

@@ -112,6 +112,6 @@
   font-weight: bold;
 }
 
-.search input:focus {
+.search input {
   outline: none;
 }

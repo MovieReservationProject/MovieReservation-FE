@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Login.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -27,6 +27,11 @@ function Login() {
 
   let navigate = useNavigate();
 
+  const idFocus = useRef();
+  useEffect(() => {
+    idFocus.current.focus();
+  }, []);
+
   const handleLogin = async (event) => {
     event.preventDefault();
     await new Promise((r) => setTimeout(r, 1000));
@@ -46,6 +51,9 @@ function Login() {
     if (response.status === 200) {
       setLoginCheck(false);
       sessionStorage.setItem("myId", userId);
+
+      const token = response.headers.get("Token");
+      console.log("Token:", token);
 
       console.log("로그인성공, 아이디: " + userId);
       alert("로그인이 완료되었습니다. 홈으로 이동합니다.");
@@ -72,6 +80,7 @@ function Login() {
             onChange={(e) => setUserId(e.target.value)}
             placeholder="id"
             className="login-form-input"
+            ref={idFocus}
           />
         </div>
         <div className="login-form-pwd">

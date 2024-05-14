@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./DetailPage.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -95,6 +95,15 @@ function DetailPage() {
 }
 
 function Review() {
+  const [like, setLike] = useState(0);
+  const handleLike = () => {
+    if (like === 0) {
+      setLike(1);
+    } else if (like === 1) {
+      setLike(0);
+    }
+  };
+
   return (
     <div className="eachreview">
       <div>
@@ -102,7 +111,9 @@ function Review() {
         <p className="eachreview-content">리뷰내용</p>
       </div>
       <div>
-        <span className="eachreview-btn">👍 0</span>
+        <span className="eachreview-btn" onClick={handleLike}>
+          👍 {like}
+        </span>
       </div>
     </div>
   );
