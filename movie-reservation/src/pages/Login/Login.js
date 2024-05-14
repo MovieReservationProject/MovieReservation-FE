@@ -47,23 +47,23 @@ function Login() {
       }),
     });
     const result = await response.json();
+    if (userId != "" && password != "") {
+      if (response.status === 200) {
+        const token = response.headers.get("Token");
+        console.log("token", token);
+        setLoginCheck(false);
+        sessionStorage.setItem("token", token);
+        sessionStorage.setItem("myId", userId);
 
-    if (response.status === 200) {
-      const token = response.headers.get("Token");
-      console.log('token',token)
-      setLoginCheck(false);
-      sessionStorage.setItem("token", token);
-      sessionStorage.setItem("myId", userId);
-
-      const token = response.headers.get("Token");
-      console.log("Token:", token);
-
-      console.log("로그인성공, 아이디: " + userId);
-      alert("로그인이 완료되었습니다. 홈으로 이동합니다.");
-      navigate("/movie");
+        console.log("로그인성공, 아이디: " + userId);
+        alert("로그인이 완료되었습니다. 홈으로 이동합니다.");
+        navigate("/movie");
+      } else {
+        alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
+        setLoginCheck(true);
+      }
     } else {
-      alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
-      setLoginCheck(true);
+      alert("아이디와 비밀번호를 입력해 주세요.");
     }
   };
 
