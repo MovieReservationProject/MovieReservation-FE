@@ -1,6 +1,8 @@
 import React, { useEffect ,useState} from 'react';
 import { useSelector } from 'react-redux';
 import dayjs from 'dayjs'
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const Myreserve = (locationtheaters) => {
 
@@ -16,23 +18,6 @@ const Myreserve = (locationtheaters) => {
         && element.start_date === reservedate && element.cinema_name === selectcinema && element.start_time === selecttime
         && element.cinema_type === selectcinematype);
 
-    // const reservedata = myreservemovie?.map(item => ({
-    //         start_time: item.start_time,
-    //         cinema_name: item.cinema_name,
-    //         movie_name : item.movie_name,
-    //         start_date: item.start_date,
-    //         cinema_type : item.cinema_type
-    //     }));
-
-    // const reservedata= {
-    //     reserve_time: selecttime,
-    //     cinema_name: selectcinema,
-    //     movie_name : selectmovie,
-    //     reserve_date: reservedate,
-    //     cinema_type : selectcinematype
-
-    // }
-
     const reservedata= {
         reserve_time: selecttime,
         cinema_name: selectcinema,
@@ -43,39 +28,76 @@ const Myreserve = (locationtheaters) => {
     }
 
 
+    let navigate = useNavigate();
 
+    // const clickreservehandler= async()=>{
+    //     const token = sessionStorage.getItem('token');
+    //     if (!token) {
+    //         console.log('Token not found');
+    //       }
+    //     try {
+    //         const response = await fetch("http://3.37.251.140:8080/reservation/add", {
+    //           method: "POST",
+    //           headers: {
+    //             // 'Authorization': `Bearer ${token}`,
+    //             "Token": sessionStorage.getItem('token'),
+    //             "Content-Type": 'application/json',
+    //           },
+    //         //   body: JSON.stringify(reservedata),
+    //         body: JSON.stringify({
+    //             'reserve-time': selecttime,
+    //             'cinema-name': selectcinema,
+    //             'movie-name': selectmovie,
+    //             'reserve-date': reservedate,
+    //             'cinema-type' : selectcinematype
+    //           }),
+    //         });
+      
+    //         if (!response.ok) {
+    //           throw new Error('error');
+    //         }
+    //         else{
+    //             alert("예약이 완료되었습니다. 마이페이지로 이동합니다.");
+    //             navigate("/mypage");
+    //         }
+      
+    //       } catch (error) {
+    //           console.log("오류발생!!:",error)
+    //       }
+    // }
 
-    const clickreservehandler= async()=>{
+    const clickreservehandler = async () => {
         const token = sessionStorage.getItem('token');
         if (!token) {
-            console.log('Token not found');
-          }
+          console.log('Token not found');
+          return; 
+        }
+      
         try {
-            const response = await fetch("http://3.37.251.140:8080/reservation/add", {
-              method: "POST",
-              headers: {
-                // 'Authorization': `Bearer ${token}`,
-                "Token": sessionStorage.getItem('token'),
-                "Content-Type": 'application/json',
-              },
-            //   body: JSON.stringify(reservedata),
-            body: JSON.stringify({
-                'reserve-time': selecttime,
-                'cinema-name': selectcinema,
-                'movie-name': selectmovie,
-                'reserve-date': reservedate,
-                'cinema-type' : selectcinematype
-              }),
-            });
+          const response = await axios.post("http://3.37.251.140:8080/reservation/add", {
+            'reserve-time': selecttime,
+            'cinema-name': selectcinema,
+            'movie-name': selectmovie,
+            'reserve-date': reservedate,
+            'cinema-type': selectcinematype
+          }, {
+            headers: {
+              "Token": token, 
+              "Content-Type": 'application/json',
+            },
+          });
       
-            if (!response.ok) {
-              throw new Error('error');
-            }
-      
-          } catch (error) {
-              console.log("오류발생!!:",error)
+          if (!response=='200') {
+            throw new Error('Error'); 
+          } else {
+            alert("예약이 완료되었습니다. 마이페이지로 이동합니다.");
+            navigate("/mypage/reservation");
           }
-    }
+      
+        } catch (error) {
+          console.log("오류 발생!!:", error);
+        }
+      };
     
     return (
         <div class="w-52 text-center">
