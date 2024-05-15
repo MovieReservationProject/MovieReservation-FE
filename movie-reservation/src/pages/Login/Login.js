@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Login.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -20,11 +20,17 @@ function Login() {
   const [loginCheck, setLoginCheck] = useState(false);
 
   const [showPwd, setShowPwd] = useState(false);
-  const handleShowPwd = () => {
+  const handleShowPwd = (event) => {
+    event.preventDefault();
     setShowPwd(!showPwd);
   };
 
   let navigate = useNavigate();
+
+  const idFocus = useRef();
+  useEffect(() => {
+    idFocus.current.focus();
+  }, []);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -41,20 +47,22 @@ function Login() {
       }),
     });
     const result = await response.json();
-
-    if (response.status === 200) {
-      const token = response.headers.get("Token");
-      console.log('token',token)
-      setLoginCheck(false);
-      sessionStorage.setItem("token", token);
-      sessionStorage.setItem("myId", userId);
-
-      console.log("로그인성공, 아이디: " + userId);
-      alert("로그인이 완료되었습니다. 홈으로 이동합니다.");
-      navigate("/movie");
+    if (userId != "" && password != "") {
+      if (response.status === 200) {
+        const token = response.headers.get("Token");
+        console.log("token", token);
+        setLoginCheck(false);
+        sessionStorage.setItem("token", token);
+        sessionStorage.setItem("myId", userId);
+        console.log("로그인성공, 아이디: " + userId);
+        alert("로그인이 완료되었습니다. 홈으로 이동합니다.");
+        navigate("/movie");
+      } else {
+        alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
+        setLoginCheck(true);
+      }
     } else {
-      alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
-      setLoginCheck(true);
+      alert("아이디와 비밀번호를 입력해 주세요.");
     }
   };
 
@@ -74,6 +82,7 @@ function Login() {
             onChange={(e) => setUserId(e.target.value)}
             placeholder="id"
             className="login-form-input"
+            ref={idFocus}
           />
         </div>
         <div className="login-form-pwd">

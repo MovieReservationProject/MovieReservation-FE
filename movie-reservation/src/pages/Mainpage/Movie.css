@@ -4,12 +4,14 @@
 }
 
 .poster-wrapper {
+  cursor: pointer;
 }
 
 .movie-img {
   width: 261.6px;
   height: 374.4px;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 .movie-img-hover {
