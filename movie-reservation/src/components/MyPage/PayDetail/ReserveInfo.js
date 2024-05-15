@@ -27,10 +27,6 @@ function ReserveInfo() {
  
 const myreservation = reservations.content
 
-// myreservation.map((item,index)=>{
-//   console.log(item.reserveNum)
-// })
-
 // console.log('slicccc',reservations.content.slice[0,5])
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -59,7 +55,7 @@ const myreservation = reservations.content
         <ReservationItem key={index} reservation={myreservation} />
       ))} */}
       {myreservation?.map((item, index) => (
-        <ReservationItem key={index} reservation={item} />
+        <ReservationItem key={index} reservation={item} reservations = {myreservation}/>
       ))}
      {/* <ReservationItem reservation={myreservation}></ReservationItem> */}
       {/* <Pagination

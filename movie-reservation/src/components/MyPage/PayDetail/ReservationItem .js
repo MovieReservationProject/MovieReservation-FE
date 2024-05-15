@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-function ReservationItem({ reservation }) {
+function ReservationItem({ reservation ,reservations}) {
   // isVisible 상태를 추가하여 예매 정보의 렌더링 여부를 결정합니다.
-  console.log('ReservationItem',reservation)
 
   const [isVisible, setIsVisible] = useState(true);
+  const [allreservation,setallreservations] = useState(reservations)
+  console.log('allreservation',allreservation)
 
   const encodedReserveId = encodeURIComponent(reservation.reserveId);
   console.log(encodedReserveId)
@@ -22,8 +23,12 @@ function ReservationItem({ reservation }) {
     .then(response => {
       if (!response.ok) {
         throw new Error('Fail');
+      }else{
+        console.log('success');
+        alert("해당 예약이 취소되었습니다.");
+        navigate("/mypage/reservation");
+        setallreservations(allreservation => allreservation.filter(reservation => reservation.reserveId !== reserveId));
       }
-      console.log('success');
     })
     .catch(error => {
       console.error('Error!!', error);
@@ -35,8 +40,6 @@ function ReservationItem({ reservation }) {
 
   // 예매 취소 버튼 클릭 시 호출될 함수입니다.
   const handleCancelClick = (reserveId) => {
-    // setIsVisible(false); // isVisible 상태를 false로 변경하여 정보를 숨깁니다.
-    // console.log(e.target.value)
     deletedata(reserveId) 
   };
 
@@ -51,6 +54,8 @@ function ReservationItem({ reservation }) {
   }
 
   return (
+    <>
+    {allreservation?.map((reservation, index) => (
     <div className="box-set-info">
       <div className="box-number">
         <em>예매번호</em>
@@ -108,6 +113,8 @@ function ReservationItem({ reservation }) {
         </div>
       </div>
     </div>
+      ))}
+      </>
   );
 }
 
