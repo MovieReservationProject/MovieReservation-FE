@@ -48,8 +48,10 @@ function Login() {
       setLoginCheck(false);
       sessionStorage.setItem("token", token);
       sessionStorage.setItem("myId", userId);
+
       console.log("로그인성공, 아이디: " + userId);
       alert("로그인이 완료되었습니다. 홈으로 이동합니다.");
+      navigate("/movie");
     } else {
       alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
       setLoginCheck(true);

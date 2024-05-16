@@ -3,11 +3,23 @@ import { useSelector } from "react-redux";
 import { reservationAction } from "../../store/reservation-slice";
 import { useDispatch } from "react-redux";
 
-const Cinema = (locationtheaters) => {
+const Cinema = (
+  locationtheaters,
+  myreserveNum,
+  mytitleKorean,
+  mycinemaName
+) => {
   const locationTheatersArray =
     locationtheaters.locationtheaters.locationTheaters;
+  const reserveNum = locationtheaters.myreserveNum;
   const selectmovie = useSelector((state) => state.reservation.selectmovie);
   const selectcinema = useSelector((state) => state.reservation.selectcinema);
+
+  const cinemaName = locationtheaters.mycinemaName;
+
+  const reserveNums = Array.from(
+    new Set(locationTheatersArray?.map((item) => item.reserveNum))
+  );
 
   const moviecinema = locationTheatersArray?.filter(
     (element) => element.movie_name === selectmovie
@@ -21,6 +33,12 @@ const Cinema = (locationtheaters) => {
   });
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (reserveNum) {
+      dispatch(reservationAction.selectcinema(cinemaName));
+    }
+  }, [dispatch, cinemaName]);
 
   const selectcinemahandler = (movie) => {
     dispatch(reservationAction.selectcinema(movie));

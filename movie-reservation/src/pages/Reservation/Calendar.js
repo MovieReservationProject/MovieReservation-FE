@@ -6,13 +6,21 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 
-const Calendar = (locationtheaters) => {
+const Calendar = (
+  locationtheaters,
+  myreserveNum,
+  mytitleKorean,
+  mycinemaName,
+  mymoviedate
+) => {
   const locationTheatersArray =
     locationtheaters.locationtheaters.locationTheaters;
+  const reserveNum = locationtheaters.myreserveNum;
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const selectdate = useSelector((state) => state.reservation.selectdate);
   const selectmovie = useSelector((state) => state.reservation.selectmovie);
+  const moviedate = locationtheaters.mymoviedate;
 
   const now = dayjs(new Date());
   const today = new Date(now.format("YYYY-MM-DD"));
@@ -67,6 +75,12 @@ const Calendar = (locationtheaters) => {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (reserveNum) {
+      dispatch(reservationAction.selectdate(moviedate));
+    }
+  }, [dispatch, moviedate]);
+
   const setReservetdate = (reservedate) => {
     dispatch(reservationAction.selectdate(reservedate));
   };
@@ -76,14 +90,17 @@ const Calendar = (locationtheaters) => {
       <div className="calendar"></div>
       <div class="flex"></div>
       <div class="flex mx-10 ">
-        <button
-          // class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-          onClick={moveprevweek}
-        >
-          &lt;
-        </button>
+        {!reserveNum && (
+          <button
+            // class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+            onClick={moveprevweek}
+          >
+            &lt;
+          </button>
+        )}
         <div class="flex">
-          {locationTheatersArray &&
+          {!reserveNum &&
+            locationTheatersArray &&
             reserveweeklist.map((date, index) => (
               <>
                 <div
@@ -97,7 +114,7 @@ const Calendar = (locationtheaters) => {
                   {reserveweeklist &&
                     reserveweeklist.length > 0 &&
                     result[index - 1] === "n" && (
-                      <div>{reserveweeklist[index + 1].substring(6, 7)}</div>
+                      <div>{reserveweeklist[index + 1]?.substring(6, 7)}</div>
                     )}
                 </div>
                 <div
@@ -129,9 +146,11 @@ const Calendar = (locationtheaters) => {
               </>
             ))}
         </div>
-        <button class="ml-4" onClick={movenextweek}>
-          &gt;
-        </button>
+        {!reserveNum && (
+          <button class="ml-4" onClick={movenextweek}>
+            &gt;
+          </button>
+        )}
       </div>
     </>
   );

@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 
-function PasswordEdit() {
+function PasswordEdit({ onPasswordChange }) {
   const [isPasswordEdit, setIsPasswordEdit] = useState(false);
+  const [newPassword, setNewPassword] = useState(""); // 새로운 비밀번호를 상태로 관리
 
   const handlePasswordEditClick = () => {
-    setIsPasswordEdit(!isPasswordEdit);
+    if (isPasswordEdit) {
+      onPasswordChange(newPassword); // 새 비밀번호를 상위 컴포넌트로 전달
+      setNewPassword(""); // 새 비밀번호 상태 초기화
+    }
+    setIsPasswordEdit(!isPasswordEdit); // 비밀번호 편집 상태 토글
+  };
+
+  const handlePasswordInput = (e) => {
+    setNewPassword(e.target.value); // 입력된 새 비밀번호를 상태에 저장
   };
 
   return (
@@ -27,6 +36,8 @@ function PasswordEdit() {
                 type="password"
                 className="password-input-field"
                 placeholder="비밀번호를 입력해주세요"
+                value={newPassword}
+                onChange={handlePasswordInput}
               />
               <span>
                 <small>
