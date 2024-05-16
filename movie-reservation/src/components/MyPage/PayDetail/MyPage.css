@@ -58,7 +58,9 @@
 .tab_wrap_lnk a {
   text-decoration: none;
   color: #333;
-  display: block;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 /* 하위 메뉴 리스트 스타일 */
@@ -70,6 +72,10 @@
   padding: 10px 0;
   z-index: 1;
   list-style: none;
+}
+
+.tab-subtitle {
+  text-align: center;
 }
 
 /* 활성 탭의 하위 메뉴를 보여주기 */
