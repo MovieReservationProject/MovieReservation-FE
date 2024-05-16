@@ -24,9 +24,9 @@
   padding-bottom: 25px;
 }
 
-.logo {
+.logo a {
   display: flex;
-  justify-content: space-evenly;
+  align-items: center;
 }
 
 .logo img {
@@ -37,6 +37,7 @@
 .logo p {
   color: #000;
   margin-left: 8px;
+  margin-top: 1.8rem;
 }
 
 .user-actions {

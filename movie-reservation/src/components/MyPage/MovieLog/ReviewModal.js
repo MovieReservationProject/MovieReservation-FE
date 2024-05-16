@@ -111,13 +111,13 @@ function ReviewModal(props) {
     <div>
       {isOpen && (
         <div className="modal">
-          <div className="modal-content">
+          <div className="review-modal">
             <span className="close" onClick={onClose}>
               &times;
             </span>
             <form onSubmit={handleSubmit}>
-              <h2 className="modal-content-review">{modalTitle}</h2>
-              <h2 className="modal-content-title">{movieTitle}</h2>
+              <h2 className="review-modal-title">{modalTitle}</h2>
+              <h2 className="review-modal-subtitle">{movieTitle}</h2>
               <StarRating setRating={setRating} />
               <textarea
                 value={review}

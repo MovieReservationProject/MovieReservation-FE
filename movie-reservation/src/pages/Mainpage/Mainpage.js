@@ -64,6 +64,17 @@ function Main() {
           {dropDownOption === "예매율순" ? "평점순" : "예매율순"}
         </option>
       </select>
+<<<<<<< HEAD
+      {isLoading ? (
+        <div className="main-loading">로딩중입니다...</div>
+      ) : (
+        <div className="movie-chart">
+          {movies.map((movie) => {
+            return <Movie movie={movie} />;
+          })}
+        </div>
+      )}
+=======
 
       <div className="movie-chart">
         {movies.map((movie) => {
@@ -71,6 +82,7 @@ function Main() {
         })}
       </div>
 
+>>>>>>> dev
       <ReactPaginate
         pageCount={2}
         pageRangeDisplayed={2}

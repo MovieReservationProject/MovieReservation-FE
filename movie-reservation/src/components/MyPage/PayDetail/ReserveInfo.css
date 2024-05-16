@@ -1,8 +1,10 @@
 .box-info-wrap {
-  width: 100%;
-  max-width: 996px;
-  display: inline-block;
-  margin-top: 3rem;
+  width: 100%; /* 전체 너비 */
+  max-width: 996px; /* 최대 너비 */
+  justify-content: center; /* 가로 축에서 중앙 정렬 */
+  margin-left: auto; /* 왼쪽 마진 자동 */
+  margin-right: auto; /* 오른쪽 마진 자동 */
+  margin-top: 3rem; /* 상단 마진 */
 }
 
 .box-set-info {

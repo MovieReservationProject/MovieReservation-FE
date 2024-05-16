@@ -6,28 +6,33 @@ import ReservationItem from "./ReservationItem ";
 function ReserveInfo() {
   // 예시를 위한 가상의 예약 데이터 배열
 
-  const [reservations,setreservations] = useState([])
+  const [reservations, setreservations] = useState([]);
   useEffect(() => {
     fetchData2();
   }, []);
 
-  const fetchData2 = async() => {
-    const token = sessionStorage.getItem('token');
+  const fetchData2 = async () => {
+    const token = sessionStorage.getItem("token");
     try {
-    const response = await fetch("http://3.37.251.140:8080/mypage/reservation", { method: "GET" ,
-    headers: {
-      "Token": sessionStorage.getItem('token'),
-    }});
-    const data = await response.json();
-    setreservations(data.data);
-  } catch (error) {
-    console.error("데이터 가져오기 중 오류 발생:", error);
+      const response = await fetch(
+        "http://3.37.251.140:8080/mypage/reservation",
+        {
+          method: "GET",
+          headers: {
+            Token: sessionStorage.getItem("token"),
+          },
+        }
+      );
+      const data = await response.json();
+      setreservations(data.data);
+    } catch (error) {
+      console.error("데이터 가져오기 중 오류 발생:", error);
+    }
   };
-}
- 
-const myreservation = reservations.content
 
-// console.log('slicccc',reservations.content.slice[0,5])
+  const myreservation = reservations.content;
+
+  // console.log('slicccc',reservations.content.slice[0,5])
 
   const [currentPage, setCurrentPage] = useState(1);
   const [reservationsPerPage] = useState(5); // 페이지 당 표시할 예약 수
@@ -55,9 +60,13 @@ const myreservation = reservations.content
         <ReservationItem key={index} reservation={myreservation} />
       ))} */}
       {myreservation?.map((item, index) => (
-        <ReservationItem key={index} reservation={item} reservations = {myreservation}/>
+        <ReservationItem
+          key={index}
+          reservation={item}
+          reservations={myreservation}
+        />
       ))}
-     {/* <ReservationItem reservation={myreservation}></ReservationItem> */}
+      {/* <ReservationItem reservation={myreservation}></ReservationItem> */}
       {/* <Pagination
         itemsPerPage={reservationsPerPage}
         totalItems={reservations.length}
