@@ -1,11 +1,11 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./MovieLog.css";
 import ReviewModal from "./ReviewModal";
 import Pagination from "./Pagination";
 import Calendar from "../../../assets/png/calendar.png";
 import { AiOutlineLine } from "react-icons/ai";
-import axios from 'axios'
+import axios from "axios";
 
 function MovieInfo() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,51 +20,60 @@ function MovieInfo() {
 
   const [itemsPerPage] = useState(5);
 
-  const [movielist,setmovielist] = useState([])
+  const [movielist, setmovielist] = useState([]);
   useEffect(() => {
     fetchData2();
   }, []);
 
-
-  const fetchData2 = async() => {
-    const token = sessionStorage.getItem('token');
+  const fetchData2 = async () => {
+    const token = sessionStorage.getItem("token");
     try {
-    const response = await fetch("http://3.37.251.140:8080/mypage/reservation", { method: "GET" ,
-    headers: {
-      "Token": sessionStorage.getItem('token'),
-    }});
-    const data = await response.json();
-    setmovielist(data.data);
-  } catch (error) {
-    console.error("데이터 가져오기 중 오류 발생:", error);
+      const response = await fetch(
+        "http://3.37.251.140:8080/mypage/reservation",
+        {
+          method: "GET",
+          headers: {
+            Token: sessionStorage.getItem("token"),
+          },
+        }
+      );
+      const data = await response.json();
+      setmovielist(data.data);
+    } catch (error) {
+      console.error("데이터 가져오기 중 오류 발생:", error);
+    }
   };
-}
 
-const mymovielist = movielist.content
+  const mymovielist = movielist.content;
 
-const [reviewlist,setreviewlist] = useState([])
+  const [reviewlist, setreviewlist] = useState([]);
   useEffect(() => {
     fetchData3();
   }, []);
 
-const fetchData3 = async() => {
-  const token = sessionStorage.getItem('token');
-  try {
-  const response = await axios("http://3.37.251.140:8080/mypage/review/list", { method: "GET" ,
-  headers: {
-    "Token": sessionStorage.getItem('token'),
-  }});
-  setreviewlist(response.data.data);
-} catch (error) {
-  console.error("데이터 가져오기 중 오류 발생:", error);
-};
-}
- console.log('reviewlist',reviewlist)
+  const fetchData3 = async () => {
+    const token = sessionStorage.getItem("token");
+    try {
+      const response = await axios(
+        "http://3.37.251.140:8080/mypage/review/list",
+        {
+          method: "GET",
+          headers: {
+            Token: sessionStorage.getItem("token"),
+          },
+        }
+      );
+      setreviewlist(response.data.data);
+    } catch (error) {
+      console.error("데이터 가져오기 중 오류 발생:", error);
+    }
+  };
+  console.log("reviewlist", reviewlist);
 
   // 모달 열기
-  const openModal = (titleKorean,movieId) => {
+  const openModal = (titleKorean, movieId) => {
     setCurrentMovieTitle(titleKorean);
-    setcurrentmovieId(movieId)
+    setcurrentmovieId(movieId);
     setRating(0);
     setReviewDate("");
 
@@ -100,25 +109,27 @@ const fetchData3 = async() => {
   };
 
   // 관람평 삭제 처리
-  const handleDeleteReview = (movieId,reviewId) => {
+  const handleDeleteReview = (movieId, reviewId) => {
     fetch(`http://3.37.251.140:8080/mypage/review/delete/${movieId}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        "Token": sessionStorage.getItem('token'),
-        'Content-Type': 'application/json'
-      }
+        Token: sessionStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Fail');
-      }
-      setreviewlist(reviewlist => reviewlist.filter(review => review.movieId !== movieId));
-      console.log('삭제후',reviewlist)
-      alert("해당 리뷰가 삭제되었습니다.");
-    })
-    .catch(error => {
-      console.error('Error!!', error);
-    });
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Fail");
+        }
+        setreviewlist((reviewlist) =>
+          reviewlist.filter((review) => review.movieId !== movieId)
+        );
+        console.log("삭제후", reviewlist);
+        alert("해당 리뷰가 삭제되었습니다.");
+      })
+      .catch((error) => {
+        console.error("Error!!", error);
+      });
   };
 
   const Reviewsbytitle = reviewlist.reduce((acc, curr) => {
@@ -129,7 +140,7 @@ const fetchData3 = async() => {
     acc[titleKorean] = reviewInfo;
 
     return acc;
-}, {});
+  }, {});
 
   // 페이지네이션 로직
   // const indexOfLastItem = currentPage * itemsPerPage;
@@ -163,7 +174,7 @@ const fetchData3 = async() => {
           <button
             type="button"
             className="btn_txt_edit"
-            onClick={() => openModal(item.titleKorean,item.movieId)}
+            onClick={() => openModal(item.titleKorean, item.movieId)}
           >
             관람평 수정
           </button>
@@ -181,7 +192,7 @@ const fetchData3 = async() => {
       <button
         type="button"
         className="btn_txt_create"
-        onClick={() => openModal(item.titleKorean,item.movieId)}
+        onClick={() => openModal(item.titleKorean, item.movieId)}
       >
         관람평 작성
       </button>
@@ -201,7 +212,10 @@ const fetchData3 = async() => {
             <li key={index}>
               <div className="poster">
                 <a href="#none" title="영화상세정보로 이동">
-                  <img src={item.posterUrl} alt="영화 포스터" />
+                  <img
+                    src={`https://github.com/sc-project2-MovieReservation/MovieReservation-FE/blob/dev/movie-reservation/public/img/${item.titleKorean}.jpeg?raw=true`}
+                    alt="영화 포스터"
+                  />
                 </a>
               </div>
               <div className="movie-info">
@@ -215,7 +229,7 @@ const fetchData3 = async() => {
                 </div>
                 {reviewContent(item)}
                 <ReviewModal
-                  movieId = {currentmovieId}
+                  movieId={currentmovieId}
                   isOpen={isModalOpen}
                   onClose={closeModal}
                   onSubmit={handleSubmitReview}
@@ -236,7 +250,7 @@ const fetchData3 = async() => {
             paginate={paginate}
           />
         )} */}
-         {/* {mymovielist?.map((item, index) => (
+        {/* {mymovielist?.map((item, index) => (
        {item}
       ))} */}
       </div>

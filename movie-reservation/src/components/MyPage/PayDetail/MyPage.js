@@ -7,6 +7,8 @@ import WarningSignForm from "./WarningSignForm";
 import UserInfo from "../UserInfo/PersonalInfo";
 import MovieLog from "../MovieLog/MovieLog";
 import ReserveInfo from "./ReserveInfo";
+import Header from "../../Header/Header";
+import Footer from "../../Footer/Footer";
 
 function MyPage() {
   const [activeTab, setActiveTab] = useState(null);
@@ -23,20 +25,24 @@ function MyPage() {
 
   return (
     <div>
+      <Header />
       <TabMenu activeTab={activeTab} setActiveTab={setActiveTab} />
       {/* '결제내역' 탭이 선택되었을 때 WarningSignForm과 PolicySectionTable 컴포넌트를 렌더링합니다. */}
-      {activeTab === 0 && (
-        <>
-          {reservations.length > 0 ? (
-            <ReserveInfo reservations={reservations} />
-          ) : (
-            <WarningSignForm />
-          )}
-          <PolicySection />
-        </>
-      )}
-      {activeTab === 1 && <MovieLog />}
-      {activeTab === 2 && <UserInfo />}
+      <div className="mypage-wrapper">
+        {activeTab === 0 && (
+          <>
+            {reservations.length > 0 ? (
+              <ReserveInfo reservations={reservations} />
+            ) : (
+              <WarningSignForm />
+            )}
+            <PolicySection />
+          </>
+        )}
+        {activeTab === 1 && <MovieLog />}
+        {activeTab === 2 && <UserInfo />}
+      </div>
+      <Footer />
     </div>
   );
 }

@@ -6,7 +6,6 @@ function Logo() {
     <div className="logo">
       <a href="/movie">
         <img src={MovieLogo} alt="CGV Logo" />
-        <span>Movie Reservation</span>
       </a>
     </div>
   );
