@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./DetailPage.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Movie from "../Mainpage/Movie";
 import { useLocation, useNavigate } from "react-router-dom";
+import { data } from "autoprefixer";
 
 function DetailPage() {
   const { state } = useLocation();
@@ -80,14 +81,7 @@ function DetailPage() {
             관람평 작성하기
           </button>
         </div>
-        <div className="review-containerbox">
-          <Review />
-          <Review />
-          <Review />
-          <Review />
-          <Review />
-          <Review />
-        </div>
+        <div className="review-containerbox">{/* <Review /> */}</div>
       </div>
       <Footer />
     </>
@@ -95,25 +89,26 @@ function DetailPage() {
 }
 
 function Review() {
-  const [like, setLike] = useState(0);
-  const handleLike = () => {
-    if (like === 0) {
-      setLike(1);
-    } else if (like === 1) {
-      setLike(0);
-    }
-  };
+  const [review, setReview] = useState([]);
+
+  // 영화별 리뷰 가져오기
+  // useEffect(() => {
+  //   getReviews();
+  // }, []);
+
+  // const getReviews = () => {
+  //   fetch("http://3.37.251.140:8080/mypage/review/list", { method: "GET" })
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       setReview(res.data);
+  //     });
+  // };
 
   return (
     <div className="eachreview">
       <div>
         <p className="eachreview-id">유저아이디</p>
         <p className="eachreview-content">리뷰내용</p>
-      </div>
-      <div>
-        <span className="eachreview-btn" onClick={handleLike}>
-          👍 {like}
-        </span>
       </div>
     </div>
   );
