@@ -47,14 +47,10 @@ const Reservation = () => {
   return (
     <>
       <Header></Header>
-<<<<<<< HEAD
-      <div class="wrap max-w-5xl mx-auto mt-6 mb-6 my-0 flex border-solid border-2 border-black-600 ">
-=======
       <div
         class="wrap max-w-5xl mx-auto mt-6 mb-6 my-0 flex border-solid border-2 border-black-600 "
         style={{ margin: "auto", marginBottom: "100px", marginTop: "100px" }}
       >
->>>>>>> dev
         <div class="flex-none w-32 border-r-2">
           <div class="text-center font-semibold grow h-10 mb-1 mt-1 border-b-2 border-black-500">
             영화

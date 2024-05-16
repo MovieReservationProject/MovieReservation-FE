@@ -6,7 +6,6 @@ import Header from "../../Header/Header";
 function TabMenu({ activeTab, setActiveTab }) {
   return (
     <>
-      <Header />
       <div id="mypage_top_menu">
         <ul className="tab_wrap_lnk actionmovingbar">
           <li
@@ -14,7 +13,7 @@ function TabMenu({ activeTab, setActiveTab }) {
             onClick={() => setActiveTab(0)}
           >
             <Link to="/mypage/reservation">
-              <span>MY 결제내역</span>
+              <span className="tab-subtitle">MY 결제내역</span>
             </Link>
             {activeTab === 0 && (
               <ul>
@@ -31,7 +30,7 @@ function TabMenu({ activeTab, setActiveTab }) {
             onClick={() => setActiveTab(1)}
           >
             <Link to="/mypage/reservation">
-              <span>MY 무비로그</span>
+              <span className="tab-subtitle">MY 무비로그</span>
             </Link>
 
             {activeTab === 1 && (
@@ -49,7 +48,7 @@ function TabMenu({ activeTab, setActiveTab }) {
             onClick={() => setActiveTab(2)}
           >
             <Link to="/mypage/userInfo">
-              <span>MY 정보관리</span>
+              <span className="tab-subtitle">MY 정보관리</span>
             </Link>
           </li>
         </ul>
