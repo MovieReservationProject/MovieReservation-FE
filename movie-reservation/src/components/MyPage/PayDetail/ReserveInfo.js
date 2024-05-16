@@ -4,6 +4,8 @@ import Pagination from "../MovieLog/Pagination";
 import ReservationItem from "./ReservationItem ";
 
 function ReserveInfo() {
+  // 예시를 위한 가상의 예약 데이터 배열
+
   const [reservations, setreservations] = useState([]);
   useEffect(() => {
     fetchData2();
@@ -29,10 +31,6 @@ function ReserveInfo() {
   };
 
   const myreservation = reservations.content;
-
-  // myreservation.map((item,index)=>{
-  //   console.log(item.reserveNum)
-  // })
 
   // console.log('slicccc',reservations.content.slice[0,5])
 
@@ -62,7 +60,11 @@ function ReserveInfo() {
         <ReservationItem key={index} reservation={myreservation} />
       ))} */}
       {myreservation?.map((item, index) => (
-        <ReservationItem key={index} reservation={item} />
+        <ReservationItem
+          key={index}
+          reservation={item}
+          reservations={myreservation}
+        />
       ))}
       {/* <ReservationItem reservation={myreservation}></ReservationItem> */}
       {/* <Pagination

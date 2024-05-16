@@ -34,7 +34,6 @@
 }
 
 .movie-chart {
-  display: flex;
   justify-content: center;
   align-items: center;
   margin: auto;
