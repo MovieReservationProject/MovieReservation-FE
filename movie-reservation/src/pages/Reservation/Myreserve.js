@@ -130,8 +130,17 @@ const Myreserve = (locationtheaters) => {
         {selecttime}
       </div>
       <div>
-        <button class="" onClick={clickreservehandler}>
-          예약
+        <button
+          onClick={clickreservehandler}
+          style={{
+            fontSize: "13px",
+            padding: "5px",
+            border: "1px solid black",
+            borderRadius: "8px",
+            margin: "20px 15px 20px 0 ",
+          }}
+        >
+          예매하기
         </button>
       </div>
     </div>

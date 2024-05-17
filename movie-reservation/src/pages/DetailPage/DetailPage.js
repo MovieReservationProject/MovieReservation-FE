@@ -5,6 +5,7 @@ import Footer from "../../components/Footer/Footer";
 import Movie from "../Mainpage/Movie";
 import { useLocation, useNavigate } from "react-router-dom";
 import { data } from "autoprefixer";
+import StarRatings from "react-star-ratings";
 
 function DetailPage() {
   const { state } = useLocation();
@@ -72,7 +73,7 @@ function DetailPage() {
               관람일 포함 7일 이내 관람평을 남기시면
               <span> 포인트 20P</span>가 적립됩니다.
             </p>
-            <p className="review-txt-bottom">0명의 실관람객 평점이 있어요.</p>
+            {/* <p className="review-txt-bottom">0명의 실관람객 평점이 있어요.</p> */}
           </div>
           <button
             className="review-btn"
@@ -81,37 +82,79 @@ function DetailPage() {
             관람평 작성하기
           </button>
         </div>
-        <div className="review-containerbox">{/* <Review /> */}</div>
+        <div className="review-containerbox">
+          <Review movieId={state.movieId} />
+        </div>
       </div>
       <Footer />
     </>
   );
 }
 
-function Review() {
+// 리뷰 컴포넌트
+function Review(props) {
   const [review, setReview] = useState([]);
 
   // 영화별 리뷰 가져오기
-  // useEffect(() => {
-  //   getReviews();
-  // }, []);
+  useEffect(() => {
+    getReviews();
+  }, []);
 
-  // const getReviews = () => {
-  //   fetch("http://3.37.251.140:8080/mypage/review/list", { method: "GET" })
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       setReview(res.data);
-  //     });
-  // };
+  const getReviews = async () => {
+    try {
+      const response = await fetch(
+        `http://3.37.251.140:8080/mypage/movie/review/${props.movieId}`,
+        {
+          method: "GET",
+        }
+      );
+      const result = await response.json();
+      setReview(result.data);
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+    }
+  };
 
-  return (
-    <div className="eachreview">
-      <div>
-        <p className="eachreview-id">유저아이디</p>
-        <p className="eachreview-content">리뷰내용</p>
+  if (review.length === 0) {
+    return <div>아직 관람평이 없습니다.</div>;
+  }
+
+  // 등록된 리뷰 목록 가져오기
+  return review.map((a, i) => {
+    const myId = review[i].myId;
+    const content = review[i].content;
+    // 리뷰별 별점
+    const StarRating = () => {
+      const rating = review[i].score;
+      return (
+        <StarRatings
+          rating={rating}
+          starRatedColor="gold"
+          numberOfStars={5}
+          name="rating"
+          starDimension="15px"
+          starSpacing="1px"
+        />
+      );
+    };
+    const date = new Date(review[i].reviewDate);
+    const formattedDate = date.toLocaleDateString("ko-KR", {
+      year: "numeric",
+      month: "2-digit",
+      day: "numeric",
+    });
+    return (
+      <div className="eachreview">
+        <span className="eachreview-id">{myId} </span>
+        <span>
+          {" "}
+          <StarRating />
+        </span>
+        <p className="eachreview-content">{content}</p>
+        <p className="eachreview-date">작성일 : {formattedDate}</p>
       </div>
-    </div>
-  );
+    );
+  });
 }
 
 export default DetailPage;
