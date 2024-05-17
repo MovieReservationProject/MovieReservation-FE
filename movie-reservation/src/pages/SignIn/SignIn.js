@@ -51,10 +51,10 @@ function SignIn() {
       });
       if (
         userName != "" &&
-        userId == "" &&
-        userPwd == "" &&
-        userDate == "" &&
-        userNum == ""
+        userId != "" &&
+        userPwd != "" &&
+        userDate != "" &&
+        userNum != ""
       ) {
         if (response.ok) {
           const contentType = response.headers.get("Content-Type");
