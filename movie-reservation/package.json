@@ -2,7 +2,6 @@
   "name": "movie-reservation",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://yunkyunghan.github.io/habit-tracker",
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -13,7 +12,6 @@
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
     "dayjs": "^1.11.10",
-    "http-proxy-middleware": "^3.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",
     "react-datepicker": "^6.9.0",
@@ -24,14 +22,11 @@
     "react-redux": "^9.1.1",
     "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
-    "react-star-ratings": "^2.3.0",
     "sass": "^1.75.0",
     "web-vitals": "^2.1.4"
   },
   "proxy": "http://3.37.251.140:8080",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "dev -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
