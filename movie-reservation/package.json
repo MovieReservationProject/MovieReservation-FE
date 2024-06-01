@@ -2,6 +2,7 @@
   "name": "movie-reservation",
   "version": "0.1.0",
   "private": true,
+  "hompage": "https://movie-reservation1.netlify.app",
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -30,8 +31,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "vercel": "vercel dev"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -52,7 +52,6 @@
     ]
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.3",
-    "vercel": "^34.2.4"
+    "tailwindcss": "^3.4.3"
   }
 }
