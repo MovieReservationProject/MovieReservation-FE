@@ -2,7 +2,7 @@
   "name": "movie-reservation",
   "version": "0.1.0",
   "private": true,
-  "hompage": "https://movie-reservation1.netlify.app",
+  "hompage": "https://movie-reservation1.netlify.app/",
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
