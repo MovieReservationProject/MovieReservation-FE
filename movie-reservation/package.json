@@ -30,7 +30,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "vercel": "vercel dev"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +52,7 @@
     ]
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.3"
+    "tailwindcss": "^3.4.3",
+    "vercel": "^34.2.4"
   }
 }
