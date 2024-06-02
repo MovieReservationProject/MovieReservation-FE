@@ -212,10 +212,7 @@ function MovieInfo() {
             <li key={index}>
               <div className="poster">
                 <a href="#none" title="영화상세정보로 이동">
-                  <img
-                    src={`https://github.com/sc-project2-MovieReservation/MovieReservation-FE/blob/dev/movie-reservation/public/img/${item.titleKorean}.jpeg?raw=true`}
-                    alt="영화 포스터"
-                  />
+                  <img src={item.posterUrl} alt="영화 포스터" />
                 </a>
               </div>
               <div className="movie-info">

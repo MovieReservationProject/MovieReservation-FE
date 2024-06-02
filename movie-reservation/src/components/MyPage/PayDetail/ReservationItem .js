@@ -118,7 +118,7 @@ function ReservationItem({ reservation, reservations }) {
                 type="button"
                 data-status="94"
                 onClick={() => handleCancelClick(reservation.reserveId)}
-                className="reservation-btn"
+                className="round black cancel"
               >
                 <span>예매취소</span>
               </button>
@@ -134,7 +134,7 @@ function ReservationItem({ reservation, reservations }) {
                     reservation.reserveId
                   )
                 }
-                className="reservation-btn"
+                className="round black cancel"
               >
                 <span>예매변경</span>
               </button>

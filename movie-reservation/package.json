@@ -2,6 +2,7 @@
   "name": "movie-reservation",
   "version": "0.1.0",
   "private": true,
+  "hompage": "https://movie-reservation1.netlify.app",
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -12,6 +13,7 @@
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
     "dayjs": "^1.11.10",
+    "http-proxy-middleware": "^3.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",
     "react-datepicker": "^6.9.0",
@@ -31,7 +33,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "CI= npm run build"
   },
   "eslintConfig": {
     "extends": [
