@@ -28,12 +28,15 @@ function MovieInfo() {
   const fetchData2 = async () => {
     const token = sessionStorage.getItem("token");
     try {
-      const response = await fetch("/mypage/reservation", {
-        method: "GET",
-        headers: {
-          Token: sessionStorage.getItem("token"),
-        },
-      });
+      const response = await fetch(
+        "http://3.37.251.140:8080/mypage/reservation",
+        {
+          method: "GET",
+          headers: {
+            Token: sessionStorage.getItem("token"),
+          },
+        }
+      );
       const data = await response.json();
       setmovielist(data.data);
     } catch (error) {
@@ -51,12 +54,15 @@ function MovieInfo() {
   const fetchData3 = async () => {
     const token = sessionStorage.getItem("token");
     try {
-      const response = await axios("/mypage/review/list", {
-        method: "GET",
-        headers: {
-          Token: sessionStorage.getItem("token"),
-        },
-      });
+      const response = await axios(
+        "http://3.37.251.140:8080/mypage/review/list",
+        {
+          method: "GET",
+          headers: {
+            Token: sessionStorage.getItem("token"),
+          },
+        }
+      );
       setreviewlist(response.data.data);
     } catch (error) {
       console.error("데이터 가져오기 중 오류 발생:", error);
@@ -104,7 +110,7 @@ function MovieInfo() {
 
   // 관람평 삭제 처리
   const handleDeleteReview = (movieId, reviewId) => {
-    fetch(`/mypage/review/delete/${movieId}`, {
+    fetch(`http://3.37.251.140:8080/mypage/review/delete/${movieId}`, {
       method: "DELETE",
       headers: {
         Token: sessionStorage.getItem("token"),
@@ -206,10 +212,7 @@ function MovieInfo() {
             <li key={index}>
               <div className="poster">
                 <a href="#none" title="영화상세정보로 이동">
-                  <img
-                    src={`https://github.com/sc-project2-MovieReservation/MovieReservation-FE/blob/dev/movie-reservation/public/img/${item.titleKorean}.jpeg?raw=true`}
-                    alt="영화 포스터"
-                  />
+                  <img src={item.posterUrl} alt="영화 포스터" />
                 </a>
               </div>
               <div className="movie-info">

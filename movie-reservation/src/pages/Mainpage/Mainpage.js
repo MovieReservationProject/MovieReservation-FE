@@ -15,7 +15,7 @@ function Main() {
   }, []);
 
   const getMovies = () => {
-    fetch("/api/find", { method: "GET" })
+    fetch("http://3.37.251.140:8080/api/find", { method: "GET" })
       .then((res) => res.json())
       .then((res) => {
         setMovies(res.data);
@@ -24,7 +24,7 @@ function Main() {
   };
 
   const changeFetch = () => {
-    fetch(`/api/find?page=2&size=3&sort=1`, {
+    fetch(`http://3.37.251.140:8080/api/find?page=2&size=3&sort=1`, {
       method: "GET",
     })
       .then((res) => res.json())

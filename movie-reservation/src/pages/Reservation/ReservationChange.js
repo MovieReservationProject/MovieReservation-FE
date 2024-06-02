@@ -33,7 +33,9 @@ const ReservationChange = () => {
 
   const fetchData2 = async () => {
     try {
-      const response = await fetch("/reservation/get", { method: "GET" });
+      const response = await fetch("http://3.37.251.140:8080/reservation/get", {
+        method: "GET",
+      });
       const data = await response.json();
       setlocationtheaters(data.data);
     } catch (error) {

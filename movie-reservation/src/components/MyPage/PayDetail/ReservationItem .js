@@ -12,13 +12,16 @@ function ReservationItem({ reservation, reservations }) {
   console.log(encodedReserveId);
 
   const deletedata = (reserveId) => {
-    fetch(`/reservation/delete?reservation-id=${encodedReserveId}`, {
-      method: "DELETE",
-      headers: {
-        Token: sessionStorage.getItem("token"),
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      `http://3.37.251.140:8080/reservation/delete?reservation-id=${encodedReserveId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Token: sessionStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Fail");
@@ -115,7 +118,7 @@ function ReservationItem({ reservation, reservations }) {
                 type="button"
                 data-status="94"
                 onClick={() => handleCancelClick(reservation.reserveId)}
-                className="reservation-btn"
+                className="round black cancel"
               >
                 <span>예매취소</span>
               </button>
@@ -131,7 +134,7 @@ function ReservationItem({ reservation, reservations }) {
                     reservation.reserveId
                   )
                 }
-                className="reservation-btn"
+                className="round black cancel"
               >
                 <span>예매변경</span>
               </button>

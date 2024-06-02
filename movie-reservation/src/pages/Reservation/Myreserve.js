@@ -80,7 +80,7 @@ const Myreserve = (locationtheaters) => {
 
     try {
       const response = await axios.post(
-        "/reservation/add",
+        "http://3.37.251.140:8080/reservation/add",
         {
           "reserve-time": selecttime,
           "cinema-name": selectcinema,

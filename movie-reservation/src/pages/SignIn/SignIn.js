@@ -42,7 +42,7 @@ function SignIn() {
     };
 
     try {
-      const response = await fetch("/auth/sign-up", {
+      const response = await fetch("http://3.37.251.140:8080/auth/sign-up", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
