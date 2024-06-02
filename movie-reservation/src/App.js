@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-<<<<<<< HEAD
 import MyPage from "./components/MyPage/PayDetail/MyPage";
 import Reservation from "./pages/Reservation/Reservation";
 import Main from "./pages/Reservation/Main";
@@ -13,8 +12,6 @@ import SignIn from "./pages/SignIn/SignIn";
 import DetailPage from "./pages/DetailPage/DetailPage";
 import ReservationChange from "./pages/Reservation/ReservationChange";
 
-=======
->>>>>>> main
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
