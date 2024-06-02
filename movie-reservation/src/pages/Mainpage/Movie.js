@@ -45,7 +45,7 @@ function Movie({ movie }) {
     <div className="movie-wrapper">
       <div className="poster-wrapper">
         <img
-          src={`https://sennydayk.github.io/sc-project2-MovieReservation/MovieReservation-FE/img/${movie.poster}.jpeg`}
+          src={`https://github.com/sc-project2-MovieReservation/MovieReservation-FE/blob/develop/movie-reservation/src/assets/img/${movie.poster}.jpeg?raw=true`}
           className={isHover ? "movie-img-hover" : "movie-img"}
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
