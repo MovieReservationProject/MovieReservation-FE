@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "./ReviewModal.css";
 import StarRating from "./StarRating";
-import axios from 'axios'
+import axios from "axios";
 
 function ReviewModal(props) {
-  const { isOpen, onClose, onSubmit, currentReview, movieTitle, mode ,movieId, reviewlist ,fetchData3} = props;
+  const {
+    isOpen,
+    onClose,
+    onSubmit,
+    currentReview,
+    movieTitle,
+    mode,
+    movieId,
+    reviewlist,
+    fetchData3,
+  } = props;
 
-  const [allreview,setallreview] = useState(reviewlist)
+  const [allreview, setallreview] = useState(reviewlist);
   const [review, setReview] = useState("");
   const [rating, setRating] = useState("1");
   const [isEditing, setIsEditing] = useState(false); // 관람평 수정 여부
@@ -40,8 +50,8 @@ function ReviewModal(props) {
     setRating("1");
   }, [movieTitle]);
 
-  function handleClick(mode,movieId) {
-    if (mode === 'create') {
+  function handleClick(mode, movieId) {
+    if (mode === "create") {
       addreviewhandler(movieId);
     } else {
       changeReviewHandler(movieId);
@@ -49,63 +59,69 @@ function ReviewModal(props) {
   }
 
   const changeReviewHandler = async (movieId) => {
-    const token = sessionStorage.getItem('token');
+    const token = sessionStorage.getItem("token");
     if (!token) {
-      console.log('Token not found');
+      console.log("Token not found");
       return;
     }
-  
+
     try {
-      const response = await axios.put(`http://3.37.251.140:8080/mypage/review/update/${movieId}`, {
-        content: review,
-        score: rating
-      }, {
-        headers: {
-          'Token': token,
-          'Content-Type': 'application/json'
+      const response = await axios.put(
+        `/mypage/review/update/${movieId}`,
+        {
+          content: review,
+          score: rating,
+        },
+        {
+          headers: {
+            Token: token,
+            "Content-Type": "application/json",
+          },
         }
-      });
-  
-      if (response.status != '200') {
-        throw new Error('Error');
-      }
-      else{
-        console.log("success")
+      );
+
+      if (response.status != "200") {
+        throw new Error("Error");
+      } else {
+        console.log("success");
         fetchData3();
       }
     } catch (error) {
       console.log("오류발생!!:", error);
     }
-  }
-  
+  };
+
   const addreviewhandler = async (movieId) => {
-    const token = sessionStorage.getItem('token');
+    const token = sessionStorage.getItem("token");
     if (!token) {
-      console.log('Token not found');
+      console.log("Token not found");
       return;
     }
-  
+
     try {
-      const response = await axios.post(`http://3.37.251.140:8080/mypage/review/add/${movieId}`, {
-        content: review,
-        score: rating
-      }, {
-        headers: {
-          'Token': token,
-          'Content-Type': 'application/json'
+      const response = await axios.post(
+        `/mypage/review/add/${movieId}`,
+        {
+          content: review,
+          score: rating,
+        },
+        {
+          headers: {
+            Token: token,
+            "Content-Type": "application/json",
+          },
         }
-      });
-  
-      if (response.status != '200') {
-        throw new Error('Error');
-      }else{
+      );
+
+      if (response.status != "200") {
+        throw new Error("Error");
+      } else {
         alert("리뷰 작성이 완료되었습니다.");
         // setallreview(prevReviews => [...prevReviews, ...response.data.data]);
-        fetchData3(); 
+        fetchData3();
       }
-    } catch (error) {
-    }
-  }
+    } catch (error) {}
+  };
 
   return (
     <div>
@@ -128,7 +144,9 @@ function ReviewModal(props) {
               <button type="button" onClick={onClose}>
                 닫기
               </button>
-              <button type="submit" onClick={()=>handleClick(mode,movieId)}>확인</button>
+              <button type="submit" onClick={() => handleClick(mode, movieId)}>
+                확인
+              </button>
             </form>
           </div>
         </div>
