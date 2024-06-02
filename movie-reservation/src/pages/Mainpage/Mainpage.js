@@ -24,7 +24,7 @@ function Main() {
   };
 
   const changeFetch = () => {
-    fetch(`/api/find?page=2&size=3&sort=1`, {
+    fetch(`http://3.37.251.140:8080/api/find?page=2&size=3&sort=1`, {
       method: "GET",
     })
       .then((res) => res.json())
