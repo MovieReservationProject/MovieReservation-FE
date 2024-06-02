@@ -11,6 +11,7 @@ function Movie({ movie }) {
     month: "long",
     day: "numeric",
   }).format(date);
+  const formattedScore = movie.scoreAvg.toFixed(1);
 
   const [isHover, setIsHover] = useState(false);
   const [isHoverBtn, setIsHoverBtn] = useState(false);
@@ -65,7 +66,7 @@ function Movie({ movie }) {
         <span className="movie-sales-txt">예매율</span>
         <span className="movie-sales">{movie.ticketSales}%</span>
         <span className="movie-score-txt"> | </span>
-        <span className="movie-score">⭐️ {movie.scoreAvg}</span>
+        <span className="movie-score">⭐️ {formattedScore}</span>
       </div>
       <div>
         <span className="movie-date">{formattedDate} 개봉</span>

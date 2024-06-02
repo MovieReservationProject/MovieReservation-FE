@@ -20,6 +20,8 @@ function DetailPage() {
     day: "numeric",
   }).format(date);
 
+  const formattedScore = state.scoreAvg.toFixed(1);
+
   return (
     <>
       <Header />
@@ -34,7 +36,7 @@ function DetailPage() {
             <div className="rate-info">
               <span className="ticket-rate">예매율 {state.ticketSales}%</span>
               <span className="rate-border"> | </span>
-              <span className="score-rate">⭐️ {state.scoreAvg}</span>
+              <span className="score-rate">⭐️ {formattedScore}</span>
             </div>
             <div className="other-info">
               <p className="other-info-txt">
