@@ -1,0 +1,223 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#sub_section {
+  max-width: 996px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.mypage_wrap {
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.title_sub_area .left_area .title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.my_movie_list {
+  list-style: none;
+  padding: 0;
+  justify-content: grid;
+  flex-direction: column;
+}
+
+.my_movie_list li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.poster {
+  margin-right: 20px;
+  overflow: hidden;
+  height: auto;
+  flex-shrink: 0;
+  width: 180px;
+  height: 254px;
+}
+
+.poster img {
+  width: 100%;
+  height: 100%;
+}
+
+/* 영화 정보를 담고 있는 부분을 더욱 명확하게 정렬하기 위한 추가 스타일 */
+.detail_info,
+.review_box,
+.user_review_box,
+.btn_box {
+  flex: 1; /* 영화 정보 부분이 남은 공간을 모두 차지하도록 설정 */
+}
+
+.my_movie_list .tit {
+  display: block;
+  font-weight: bold;
+  color: #000;
+  height: 27px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.detail_info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.detail_info .txt {
+  color: #666;
+  font-size: 14px;
+  margin-top: 8px;
+  display: block;
+}
+
+.detail_info .txt:last-child {
+  margin-top: 0;
+}
+
+.detail_info .txt.time em {
+  margin-right: 10px;
+  color: #000;
+}
+
+.review_box {
+  margin-bottom: 6px;
+}
+
+.review_box dt {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ff7787;
+  margin: 20px 0 5px 0;
+}
+
+.review_box dd {
+  font-size: 14px;
+  color: #666;
+}
+
+.user_review_box {
+  display: block;
+  align-items: center;
+  font-size: 12px;
+  margin: 22px 0;
+  width: auto;
+}
+
+.user_review_box .txt_date {
+  margin-right: 10px;
+}
+
+.user_review_box .txt_date img {
+  width: 14px;
+  height: 15px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.btn_col3 {
+  padding: 8px 15px;
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.btn_txt_del {
+  background: none;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 100px;
+  height: 34.4px;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.btn_col3:hover,
+.btn_txt_del:hover {
+  opacity: 0.8;
+}
+
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.btn_box {
+  display: flex;
+}
+
+.txt_ic_edit {
+  font-size: 12px;
+}
+
+.btn_txt_edit {
+  background: none;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 100px;
+  font-size: 12px;
+  padding: 8px 15px;
+  margin-top: 5px;
+}
+
+.btn_txt_create {
+  background: none;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 100px;
+  font-size: 12px;
+  padding: 8px 15px;
+  margin-top: 8rem;
+}
+.rotate-icon {
+  transform: rotate(90deg);
+  margin: 0 6px;
+  position: relative;
+  top: 1.7px;
+}
+
+.left_area {
+  margin-bottom: 2.5rem;
+}
+
+.left_area .title {
+  text-align: left;
+}
+
+/* WarningMovieForm.css */
+.warningMovie-wrap {
+  margin: 5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.warningMovie-wrap img {
+  width: 90px;
+  height: 90px;
+}
+
+.warningMovie-wrap p {
+  font-size: 24px;
+}

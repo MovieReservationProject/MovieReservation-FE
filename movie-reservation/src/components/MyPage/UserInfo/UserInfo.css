@@ -1,0 +1,180 @@
+/* PhoneNumberEdit.css */
+.info-label,
+.info-content {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.info-label {
+  border-right: 1px solid #ccc;
+  width: 15%;
+}
+
+.info-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.info-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.info-content li {
+  display: flex;
+  align-items: center;
+}
+
+.info-content li:not(:last-child) {
+  margin-right: -6rem;
+}
+
+.info-edit {
+  padding: 10px;
+  text-align: center;
+  width: calc(50% - 16px);
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+}
+
+.edit-button {
+  background-color: #666;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.edit-button:hover {
+  background-color: #000;
+}
+
+/* PasswordEdit.css */
+.password-label,
+.password-value {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.password-label {
+  border-right: 1px solid #ccc;
+  width: 15%;
+}
+
+.password-value {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.password-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* ********와 변경 버튼 사이의 간격 */
+}
+
+.password-input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.password-input-field {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+  margin-top: 25px;
+}
+
+.password-edit-btn {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding-top: 10px; /* 상단 여백 추가 */
+  box-sizing: border-box; /* 패딩을 포함한 너비 계산 */
+  background-color: #666;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.password-edit-btn:hover {
+  background-color: #000;
+}
+
+.password-input-container span small {
+  color: red;
+  font-size: 12px;
+  display: block;
+  margin-top: 5px;
+}
+
+/* PersonalInfo.css */
+.profile-settings-container {
+  font-family: "Noto Sans", sans-serif;
+  max-width: 996px;
+  margin: 20px auto;
+}
+
+.settings-title {
+  color: #000;
+  text-align: center;
+  font-size: 24px;
+  text-align: left;
+}
+
+.settings-description {
+  text-align: left;
+  margin-bottom: 30px;
+  color: #000;
+}
+
+.settings-box {
+  padding: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.settings-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 1px solid #ddd;
+}
+
+.settings-label,
+.settings-value {
+  padding: 15px; /* 셀의 패딩을 조정하여 더 많은 공간을 제공합니다. */
+  text-align: left; /* 텍스트를 왼쪽으로 정렬합니다. */
+  border-bottom: 1px solid #ddd; /* 행 사이의 구분선을 추가합니다. */
+}
+
+.settings-label {
+  border-right: 1px solid #ddd; /* 행 사이의 구분선을 추가합니다. */
+}
+
+.settings-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.settings-cancle-btn,
+.settings-ok-btn {
+  background-color: #666;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 40px 10px 0 0;
+}
+
+.edit-button:hover {
+  background-color: #000;
+}

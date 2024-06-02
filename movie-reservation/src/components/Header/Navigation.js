@@ -5,7 +5,7 @@ function Navigation() {
     <nav className="navigation">
       <ul>
         <li>
-          <a href="#">영화</a>
+          <a href="/movie">영화</a>
         </li>
         <li>
           <a href="#">예매</a>

@@ -1,0 +1,134 @@
+.signin-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.signin-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+.eachicon {
+  width: 50px;
+  height: 50px;
+  margin: 15px;
+}
+
+.icon-txt-input {
+  font-size: 14px;
+  font-weight: bold;
+  color: #fb4357;
+}
+
+.icon-txt-complete {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.input-form {
+  margin-bottom: 100px;
+}
+
+.user-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.user-info-txt {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.user-info-input {
+  width: 300px;
+  height: 40px;
+  font-size: 15px;
+  padding-left: 10px;
+  border: 1px solid gray;
+  border-radius: 6px;
+}
+
+.idcheck-btn {
+  margin-left: 10px;
+  width: 120px;
+  height: 30px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.pwd-btn {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: white;
+  position: absolute;
+  right: 37.5%;
+  cursor: pointer;
+}
+
+.pwd-icon {
+  width: 15px;
+  height: 15px;
+}
+
+.signin-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 50px;
+  padding: 10px 0 12px 0;
+  width: 150px;
+  height: 45px;
+  background-color: #fb4357;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: 4px double;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.signin-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 100px;
+}
+
+.footer-txt {
+  font-weight: bold;
+}
+
+.login-btn {
+  margin-left: 30px;
+  width: 90px;
+  height: 30px;
+  background-color: white;
+  border: 2px solid #fb4357;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fb4357;
+  cursor: pointer;
+}

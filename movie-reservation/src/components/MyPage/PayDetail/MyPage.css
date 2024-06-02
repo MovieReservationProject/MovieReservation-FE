@@ -1,0 +1,168 @@
+/* 전체 탭 메뉴 컨테이너 스타일링 */
+#mypage_top_menu {
+  width: 996px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 100px;
+  margin-top: 50px;
+}
+
+/* 탭 메뉴 리스트 스타일링 */
+.tab_wrap_lnk {
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+}
+
+.mypage-wrapper {
+  margin: 0 200px 50px 220px;
+}
+
+/* 각 탭 항목 스타일링 */
+.tab_wrap_lnk li {
+  padding: 10px 15px;
+  cursor: pointer;
+  position: relative;
+  flex: 1;
+}
+
+/* 각 탭 항목에 마우스를 올렸을 때 border-bottom 추가 */
+.tab_wrap_lnk li:hover {
+  border-bottom: 2px solid #333;
+  font-weight: bold;
+}
+
+/* 활성 탭 스타일 */
+.tab_wrap_lnk li.active {
+  border-bottom: 2px solid #333; /* 활성 탭에 대한 border-bottom 스타일 */
+  font-weight: bold;
+}
+
+/* 하위 메뉴 항목에 대한 border-bottom 제거 */
+.tab_wrap_lnk li ul li:first-child {
+  padding: 5px 15px;
+  white-space: nowrap;
+  border-bottom: none; /* 하위 메뉴 항목에 대한 border-bottom 제거 */
+  font-weight: normal;
+}
+.tab_wrap_lnk li ul li:hover {
+  border-bottom: none; /* 하위 메뉴 항목에 대한 border-bottom 제거 */
+}
+
+/* 탭 내부의 링크 스타일 */
+.tab_wrap_lnk a {
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* 하위 메뉴 리스트 스타일 */
+.tab_wrap_lnk ul {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 0;
+  z-index: 1;
+  list-style: none;
+}
+
+.tab-subtitle {
+  text-align: center;
+}
+
+/* 활성 탭의 하위 메뉴를 보여주기 */
+.tab_wrap_lnk li.active > ul {
+  display: block;
+}
+
+/* 하위 메뉴 항목 스타일 */
+.tab_wrap_lnk li ul li {
+  padding: 5px 15px;
+  white-space: nowrap;
+}
+
+/* 하위 메뉴 숨김 */
+.tab_wrap_lnk li > ul {
+  display: none;
+}
+
+/* 상위 메뉴에 마우스를 올렸을 때 하위 메뉴 표시 */
+.tab_wrap_lnk li:hover > ul {
+  display: block;
+}
+
+/* PolicySection.css */
+.sect-box-descri {
+  display: flex;
+  justify-content: center;
+}
+.sect-box-descri table {
+  border-collapse: collapse;
+  margin: 3rem 0;
+  font-size: 0.9rem;
+  width: 996px;
+  border: 2px solid #ddd;
+  overflow: hidden;
+}
+
+.sect-box-descri th,
+.sect-box-descri td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.sect-box-descri td:first-child {
+  border-right: 1px solid #ddd;
+  font-weight: bold;
+  font-size: 13px;
+  width: 15%;
+}
+.sect-box-descri td:last-child {
+  font-size: 12px;
+}
+
+.sect-box-descri ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sect-box-descri li {
+  padding: 2px 0;
+  list-style: none;
+}
+
+em {
+  color: blue;
+  font-style: normal;
+}
+
+/* WarningSignForm.css */
+.warningSign-wrap {
+  margin: 5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.warningSign-wrap img {
+  width: 90px;
+  height: 90px;
+}
+
+.warningSign-wrap p {
+  font-size: 24px;
+}
+.reservation-btn {
+  margin: 5px;
+}
