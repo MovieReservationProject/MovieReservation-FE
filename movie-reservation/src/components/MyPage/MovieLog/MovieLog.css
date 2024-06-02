@@ -204,3 +204,20 @@
 .left_area .title {
   text-align: left;
 }
+
+/* WarningMovieForm.css */
+.warningMovie-wrap {
+  margin: 5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.warningMovie-wrap img {
+  width: 90px;
+  height: 90px;
+}
+
+.warningMovie-wrap p {
+  font-size: 24px;
+}

@@ -8,7 +8,7 @@ function Navigation() {
           <a href="/movie">영화</a>
         </li>
         <li>
-          <a href="/reservation">예매</a>
+          <a href="#">예매</a>
         </li>
       </ul>
     </nav>
