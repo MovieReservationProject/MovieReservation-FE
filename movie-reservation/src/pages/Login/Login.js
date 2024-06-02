@@ -36,7 +36,7 @@ function Login() {
     event.preventDefault();
     await new Promise((r) => setTimeout(r, 1000));
 
-    const response = await fetch("http://3.37.251.140:8080/auth/login", {
+    const response = await fetch("/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

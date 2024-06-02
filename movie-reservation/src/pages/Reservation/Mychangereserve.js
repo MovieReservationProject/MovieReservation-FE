@@ -59,19 +59,16 @@ const Mychangereserve = (
       reserveNum.replace("-", "")
     );
     // fetch(`http://3.37.251.140:8080/reservation/update/${encodeURIComponent(reserveNum)}`, {
-    fetch(
-      `http://3.37.251.140:8080/reservation/update?reservation-id=${encodedReserveId}`,
-      {
-        method: "PUT",
-        headers: {
-          Token: sessionStorage.getItem("token"),
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          change_time: selecttime,
-        }),
-      }
-    )
+    fetch(`/reservation/update?reservation-id=${encodedReserveId}`, {
+      method: "PUT",
+      headers: {
+        Token: sessionStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        change_time: selecttime,
+      }),
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error("Fail");

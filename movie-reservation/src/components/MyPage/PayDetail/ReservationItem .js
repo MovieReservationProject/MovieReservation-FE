@@ -12,16 +12,13 @@ function ReservationItem({ reservation, reservations }) {
   console.log(encodedReserveId);
 
   const deletedata = (reserveId) => {
-    fetch(
-      `http://3.37.251.140:8080/reservation/delete?reservation-id=${encodedReserveId}`,
-      {
-        method: "DELETE",
-        headers: {
-          Token: sessionStorage.getItem("token"),
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch(`/reservation/delete?reservation-id=${encodedReserveId}`, {
+      method: "DELETE",
+      headers: {
+        Token: sessionStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error("Fail");
