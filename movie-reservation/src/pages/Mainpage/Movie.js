@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Movie.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Movie({ movie }) {
   //   const imgRoot = `/img/${movie.poster}.jpeg`;
@@ -45,7 +45,8 @@ function Movie({ movie }) {
     <div className="movie-wrapper">
       <div className="poster-wrapper">
         <img
-          src={`https://github.com/sc-project2-MovieReservation/MovieReservation-FE/blob/develop/movie-reservation/src/assets/img/${movie.poster}.jpeg?raw=true`}
+          src={process.env.PUBLIC_URL + `/img/${movie.poster}.jpeg`}
+          alt="poster image"
           className={isHover ? "movie-img-hover" : "movie-img"}
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
