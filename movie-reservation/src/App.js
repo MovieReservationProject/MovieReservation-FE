@@ -25,14 +25,13 @@ function App() {
     <div className="App">
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
-          <Route path="/" element={<Main />}></Route>
+          <Route path="/" element={<Home />}></Route>
           <Route path="/reservation" element={<Reservation />}></Route>
           <Route
             path="/reservationChange/:reserveNum"
             element={<ReservationChange />}
           ></Route>
           <Route path="/mypage/*" element={<MyPage />} />
-          <Route path="/movie" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/movie/:title" element={<DetailPage />} />

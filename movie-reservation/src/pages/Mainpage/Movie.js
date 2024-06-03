@@ -45,7 +45,7 @@ function Movie({ movie }) {
     <div className="movie-wrapper">
       <div className="poster-wrapper">
         <img
-          src={process.env.PUBLIC_URL + `/img/${movie.poster}.jpeg`}
+          src={`https://github.com/sc-project2-MovieReservation/MovieReservation-FE/blob/main/movie-reservation/src/assets/img/${movie.poster}.jpeg?raw=true`}
           alt="poster image"
           className={isHover ? "movie-img-hover" : "movie-img"}
           onMouseOver={handleMouseOver}

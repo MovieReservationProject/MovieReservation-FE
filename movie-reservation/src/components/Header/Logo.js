@@ -4,7 +4,7 @@ import MovieLogo from "../../assets/png/movie.png";
 function Logo() {
   return (
     <div className="logo">
-      <a href="/movie">
+      <a href="/">
         <img src={MovieLogo} alt="CGV Logo" />
       </a>
     </div>
