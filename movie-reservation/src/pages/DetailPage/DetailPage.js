@@ -11,7 +11,7 @@ function DetailPage() {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  const imgRoot = `https://github.com/sc-project2-MovieReservation/MovieReservation-FE/blob/dev/movie-reservation/public/img/${state.poster}.jpeg?raw=true`;
+  const imgRoot = `https://github.com/sc-project2-MovieReservation/MovieReservation-FE/blob/mainpage/movie-reservation/public/img/${state.poster}.jpeg?raw=true`;
 
   const date = new Date(state.releaseDate);
   const formattedDate = new Intl.DateTimeFormat("ko-KR", {
