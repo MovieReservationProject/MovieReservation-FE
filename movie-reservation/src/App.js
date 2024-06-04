@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
 import MyPage from "./components/MyPage/PayDetail/MyPage";
 import Reservation from "./pages/Reservation/Reservation";
 import Main from "./pages/Reservation/Main";
@@ -23,7 +21,7 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/reservation" element={<Reservation />}></Route>
