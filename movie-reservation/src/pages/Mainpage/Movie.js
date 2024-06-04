@@ -71,7 +71,7 @@ function Movie({ movie }) {
       </div>
       <div>
         <span className="movie-date">{formattedDate} 개봉</span>
-        <span className="movie-dday">D-{movie.dday}</span>
+        {/* <span className="movie-dday">D-{movie.dday}</span> */}
       </div>
       <button
         className="movie-btn"

@@ -43,13 +43,15 @@ function Main() {
   const handleDropdown = (e) => {
     const optionValue = e.target.value;
 
-    if (optionValue === 1) {
-      let copy = [...movies];
-      copy.sort((a, b) => b.ticketSales - a.ticketSales);
-    } else if (optionValue === 2) {
-      let copy = [...movies];
-      copy.sort((a, b) => b.scoreAvg - a.scoreAvg);
+    let sortedMovies = [...movies];
+
+    if (optionValue === "1") {
+      sortedMovies.sort((a, b) => b.ticketSales - a.ticketSales);
+    } else if (optionValue === "2") {
+      sortedMovies.sort((a, b) => b.scoreAvg - a.scoreAvg);
     }
+    setMovies(sortedMovies);
+    setDropDownOption(optionValue === "1" ? "예매율순" : "평점순");
   };
 
   return (
@@ -58,11 +60,13 @@ function Main() {
       <div className="main-header">
         <h1 className="main-title">무비차트</h1>
       </div>
-      <select className="main-dropdown" onChange={handleDropdown}>
-        <option value={1}>{dropDownOption}</option>
-        <option value={2}>
-          {dropDownOption === "예매율순" ? "평점순" : "예매율순"}
-        </option>
+      <select
+        className="main-dropdown"
+        value={dropDownOption === "예매율순" ? "1" : "2"}
+        onChange={handleDropdown}
+      >
+        <option value="1">예매율순</option>
+        <option value="2">평점순</option>
       </select>
 
       <div className="movie-chart">
