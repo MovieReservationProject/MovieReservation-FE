@@ -105,7 +105,7 @@ function Review(props) {
   const getReviews = async () => {
     try {
       const response = await fetch(
-        `http://3.37.251.140:8080/mypage/movie/review/${props.movieId}`,
+        `/backend/mypage/movie/review/${props.movieId}`,
         {
           method: "GET",
         }

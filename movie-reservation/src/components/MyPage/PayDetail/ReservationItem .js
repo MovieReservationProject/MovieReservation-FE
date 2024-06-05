@@ -12,31 +12,28 @@ function ReservationItem({ reservation, reservations }) {
   console.log(encodedReserveId);
 
   const deletedata = (reserveId) => {
-    fetch(
-      `http://3.37.251.140:8080/reservation/delete?reservation-id=${encodedReserveId}`,
-      {
-        method: "DELETE",
-        headers: {
-          Token: sessionStorage.getItem("token"),
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((response) => {
+    fetch(`/backend/reservation/delete?reservation-id=${encodedReserveId}`, {
+      method: "DELETE",
+      headers: {
+        Token: sessionStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+    })
+      .then(response => {
         if (!response.ok) {
           throw new Error("Fail");
         } else {
           console.log("success");
           alert("해당 예약이 취소되었습니다.");
           navigate("/mypage/reservation");
-          setallreservations((allreservation) =>
+          setallreservations(allreservation =>
             allreservation.filter(
-              (reservation) => reservation.reserveId !== reserveId
+              reservation => reservation.reserveId !== reserveId
             )
           );
         }
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Error!!", error);
       });
   };

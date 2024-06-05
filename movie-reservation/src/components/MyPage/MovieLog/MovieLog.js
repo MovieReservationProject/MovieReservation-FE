@@ -12,15 +12,12 @@ function MovieLog() {
   const fetchData2 = async () => {
     const token = sessionStorage.getItem("token");
     try {
-      const response = await axios(
-        "http://3.37.251.140:8080/mypage/reservation",
-        {
-          method: "GET",
-          headers: {
-            Token: sessionStorage.getItem("token"),
-          },
-        }
-      );
+      const response = await axios("/backend/mypage/reservation", {
+        method: "GET",
+        headers: {
+          Token: sessionStorage.getItem("token"),
+        },
+      });
       setmovielist(response.data.data);
     } catch (error) {
       console.error("데이터 가져오기 중 오류 발생:", error);

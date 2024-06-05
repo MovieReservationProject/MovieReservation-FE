@@ -24,7 +24,7 @@ function PersonalInfo() {
   const fetchData2 = async () => {
     const token = sessionStorage.getItem("token");
     try {
-      const response = await fetch("http://3.37.251.140:8080/mypage/userInfo", {
+      const response = await fetch("/backend/mypage/userInfo", {
         method: "GET",
         headers: {
           Token: sessionStorage.getItem("token"),
@@ -51,13 +51,13 @@ function PersonalInfo() {
 
   console.log("userinfo", userInfo.PhoneNumber);
 
-  const updateUserInfo = async (updatedUserInfo) => {
+  const updateUserInfo = async updatedUserInfo => {
     const token = sessionStorage.getItem("token");
     if (!token) {
       console.error("토큰이 존재하지 않습니다.");
       return; // 토큰이 없으면 여기서 함수 실행을 멈춥니다.
     }
-    const response = await fetch("http://3.37.251.140:8080/mypage/userInfo", {
+    const response = await fetch("/backend/mypage/userInfo", {
       method: "PUT",
       headers: {
         Token: token, // 여기도 수정했습니다.

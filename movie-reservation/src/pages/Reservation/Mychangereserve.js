@@ -58,8 +58,8 @@ const Mychangereserve = (
     const encodedReserveNumwithouthypen = encodeURIComponent(
       reserveNum.replace("-", "")
     );
-    // fetch(`http://3.37.251.140:8080/reservation/update/${encodeURIComponent(reserveNum)}`, {
-    fetch(`http://3.37.251.140:8080/reservation/update?reservation-id=${encodedReserveId}`, {
+    // fetch(`/backend/reservation/update/${encodeURIComponent(reserveNum)}`, {
+    fetch(`/backend/reservation/update?reservation-id=${encodedReserveId}`, {
       method: "PUT",
       headers: {
         Token: sessionStorage.getItem("token"),
@@ -69,7 +69,7 @@ const Mychangereserve = (
         change_time: selecttime,
       }),
     })
-      .then((response) => {
+      .then(response => {
         if (!response.ok) {
           throw new Error("Fail");
         } else {
@@ -77,7 +77,7 @@ const Mychangereserve = (
           navigate("/mypage");
         }
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Error!!", error);
       });
   };

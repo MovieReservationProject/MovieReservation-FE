@@ -8,16 +8,16 @@ const Myreserve = (locationtheaters) => {
   const locationTheatersArray =
     locationtheaters.locationtheaters.locationTheaters;
 
-  const selectmovie = useSelector((state) => state.reservation.selectmovie);
-  const selectcinema = useSelector((state) => state.reservation.selectcinema);
+  const selectmovie = useSelector(state => state.reservation.selectmovie);
+  const selectcinema = useSelector(state => state.reservation.selectcinema);
   const selectcinematype = useSelector(
-    (state) => state.reservation.selectcinematype
+    state => state.reservation.selectcinematype
   );
-  const selectdate = useSelector((state) => state.reservation.selectdate);
-  const selecttime = useSelector((state) => state.reservation.selecttime);
+  const selectdate = useSelector(state => state.reservation.selectdate);
+  const selecttime = useSelector(state => state.reservation.selecttime);
   const reservedate = dayjs(selectdate).format("YYYY-MM-DD");
   const myreservemovie = locationTheatersArray?.filter(
-    (element) =>
+    element =>
       element.movie_name === selectmovie &&
       element.start_date === reservedate &&
       element.cinema_name === selectcinema &&
@@ -41,7 +41,7 @@ const Myreserve = (locationtheaters) => {
   //         console.log('Token not found');
   //       }
   //     try {
-  //         const response = await fetch("http://3.37.251.140:8080/reservation/add", {
+  //         const response = await fetch("/backend/reservation/add", {
   //           method: "POST",
   //           headers: {
   //             // 'Authorization': `Bearer ${token}`,
@@ -80,7 +80,7 @@ const Myreserve = (locationtheaters) => {
 
     try {
       const response = await axios.post(
-        "http://3.37.251.140:8080/reservation/add",
+        "/backend/reservation/add",
         {
           "reserve-time": selecttime,
           "cinema-name": selectcinema,

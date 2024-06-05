@@ -20,7 +20,7 @@ const Reservation = () => {
 
   const fetchData2 = async () => {
     try {
-      const response = await fetch("http://3.37.251.140:8080/reservation/get", {
+      const response = await fetch("/backend/reservation/get", {
         method: "GET",
       });
       const data = await response.json();

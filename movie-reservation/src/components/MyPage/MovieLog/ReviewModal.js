@@ -58,7 +58,7 @@ function ReviewModal(props) {
     }
   }
 
-  const changeReviewHandler = async (movieId) => {
+  const changeReviewHandler = async movieId => {
     const token = sessionStorage.getItem("token");
     if (!token) {
       console.log("Token not found");
@@ -67,7 +67,7 @@ function ReviewModal(props) {
 
     try {
       const response = await axios.put(
-        `http://3.37.251.140:8080/mypage/review/update/${movieId}`,
+        `/backend/mypage/review/update/${movieId}`,
         {
           content: review,
           score: rating,
@@ -91,7 +91,7 @@ function ReviewModal(props) {
     }
   };
 
-  const addreviewhandler = async (movieId) => {
+  const addreviewhandler = async movieId => {
     const token = sessionStorage.getItem("token");
     if (!token) {
       console.log("Token not found");
@@ -100,7 +100,7 @@ function ReviewModal(props) {
 
     try {
       const response = await axios.post(
-        `http://3.37.251.140:8080/mypage/review/add/${movieId}`,
+        `/backend/mypage/review/add/${movieId}`,
         {
           content: review,
           score: rating,

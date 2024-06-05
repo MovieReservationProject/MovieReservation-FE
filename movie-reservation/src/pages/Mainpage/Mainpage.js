@@ -15,20 +15,20 @@ function Main() {
   }, []);
 
   const getMovies = () => {
-    fetch("http://3.37.251.140:8080/api/find", { method: "GET" })
-      .then((res) => res.json())
-      .then((res) => {
+    fetch("/backend/api/find", { method: "GET" })
+      .then(res => res.json())
+      .then(res => {
         setMovies(res.data);
       });
     setPage(2);
   };
 
   const changeFetch = () => {
-    fetch(`http://3.37.251.140:8080/api/find?page=2&size=3&sort=1`, {
+    fetch(`/backend/api/find?page=2&size=3&sort=1`, {
       method: "GET",
     })
-      .then((res) => res.json())
-      .then((res) => {
+      .then(res => res.json())
+      .then(res => {
         setMovies(res.data);
       });
     setPage(1);
