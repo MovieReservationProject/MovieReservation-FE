@@ -111,17 +111,17 @@ function MovieInfo() {
         "Content-Type": "application/json",
       },
     })
-      .then(response => {
+      .then((response) => {
         if (!response.ok) {
           throw new Error("Fail");
         }
-        setreviewlist(reviewlist =>
-          reviewlist.filter(review => review.movieId !== movieId)
+        setreviewlist((reviewlist) =>
+          reviewlist.filter((review) => review.movieId !== movieId)
         );
         console.log("삭제후", reviewlist);
         alert("해당 리뷰가 삭제되었습니다.");
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error!!", error);
       });
   };
@@ -206,7 +206,10 @@ function MovieInfo() {
             <li key={index}>
               <div className="poster">
                 <a href="#none" title="영화상세정보로 이동">
-                  <img src={item.posterUrl} alt="영화 포스터" />
+                  <img
+                    src={`https://github.com/sc-project2-MovieReservation/MovieReservation-FE/blob/main/movie-reservation/src/assets/img/${item.titleKorean}.jpeg?raw=true`}
+                    alt="영화 포스터"
+                  />
                 </a>
               </div>
               <div className="movie-info">
